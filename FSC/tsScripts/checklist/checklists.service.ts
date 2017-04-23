@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http'
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 
@@ -8,14 +8,14 @@ export class Checklist {
     }
 }
 
-export class CheckListDisplayVM {
+export class ChecklistVM {
     constructor(public Id: number, public Description: string, public Items: Checklist[]) {
     }
 }
 
 @Injectable()
 export class ChecklistsService {
-    constructor(private _http: Http) {
+    constructor(private _http: Http) {  
 
     }
 
@@ -23,11 +23,11 @@ export class ChecklistsService {
         return this._http.get(this.address + 'Get', this.requestOptions())
             .map((response: Response) => <Checklist[]>response.json())
             .catch(this.hendleError);
-    }
+    }       
 
     getCheckList(id: number) {
         return this._http.get(this.address + 'Get/' + id)
-            .map((response: Response) => <CheckListDisplayVM>response.json())
+            .map((response: Response) => <ChecklistVM>response.json())
             .catch(this.hendleError);
     }
 
@@ -38,18 +38,24 @@ export class ChecklistsService {
     }
 
     createChecklist(list: Checklist) {
-        let body = JSON.stringify(list);
-        return this._http.post(this.address , body, this.requestOptions())
-            .map((response: Response) => <Checklist>response.json())
+        return this._http.post(this.address, list, this.requestOptions())
+            .map((response: Response) => <Checklist> response.json())
             .catch(this.hendleError);
     }
 
-    updateChecklist(list: CheckListDisplayVM) {
+    updateChecklist(list: ChecklistVM) {
         let body = JSON.stringify(list);
         return this._http.put(this.address  + list.Id, body, this.requestOptions())
             .map((response: Response) => response.json())
             .catch(this.hendleError);
     }
+    updatejeden(list) {
+    let body = JSON.stringify(list);
+    return this._http.put(this.address + list.Id, body, this.requestOptions())
+        .map((response: Response) => response.json())
+        .catch(this.hendleError);
+}
+
 
     address: string = "api/CheckList/";
     requestOptions(): RequestOptions {

@@ -1,0 +1,68 @@
+﻿
+<section>
+    <header>
+        <h1>Listy</h1>
+        <div class="row">
+            <div class="col-md-3 col-md-offset-0">
+                <input placeholder="Nazwa listy" [(ngModel)]="checklistToAdd.Description" />
+                <button (click)="addChecklist()" class="btn btn-primary">Dodaj </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="row">
+        <section>
+            <div class="col-md-3 col-md-offset-0 ">
+                <ul style="padding-left:0">
+                    <li class="list-group-item" *ngFor="let ve of checklists ">
+                        <span (click)="showChecklist(ve.Id)" class="btn btn-default ">{{ve.Description}}</span>
+                        <span (click)="deleteChecklist(ve)" class="btn btn-danger pull-right  ">Usuń</span>
+                    </li>
+                </ul>
+                <div>
+                    <span> List: </span><span>{{(checklists)?.length}}</span>
+                </div>
+            </div>
+        </section>
+
+
+        <div id="checklist" class="col-md-7 col-md-offset-1" [class.hidden]="!checklistVisibility">
+            <div class="col-md-offset-2">
+                <span class="description" [class.hidden]="selectedChecklist?.isEditMode" (click)="setEditState(selectedChecklist, true)">{{selectedChecklist?.Description}}</span>
+                <input [class.hidden]="!selectedChecklist?.isEditMode" type="text" [value]="selectedChecklist?.Description" (keypress)="updateTodoText($event, selectedChecklist)">
+                <input [class.hidden]="!selectedChecklist?.isEditMode" type="button" value="Anuluj" (click)="setEditState(selectedChecklist, false)" class="btn btn-warning">
+
+            </div>
+            <div class="addElement row col-md-offset-1">
+                <div class="input-group col-md-10">
+                    <input type="text" placeholder="Dodaj element" [(ngModel)]="newChecklistItem" class="form-control" (keypress)="addChecklistItem($event,newChecklistItem)" />
+                    <span class="input-group-btn">
+                        <button (click)="addChecklistItem($event,newChecklistItem)" class="btn btn-primary " type="button" [class.disabled]="newChecklistItem===''">Dodaj</button>
+                    </span>
+                </div>
+            </div>
+            <div *ngFor="let checklistItem of (selectedChecklist)?.Items">
+                <div class="row">
+                    <div class="col-md-1">
+                        <div class="checkbox checkbox-success">
+                            <input type="checkbox" [checked]="checklistItem.IsCompleted" (click)="updateStatusChecklist(checklistItem)" [(ngModel)]="checklistItem.IsCompleted">
+                            <label> </label>
+                        </div>
+                    </div>
+                    <div class="col-md-5 alignDescription">
+                        <span [class.hidden]="checklistItem.isEditMode">{{checklistItem.Description}}</span>
+                        <input [class.hidden]="!checklistItem.isEditMode" type="text" [value]="checklistItem.Description" (keypress)="updateChecklistItemText($event, checklistItem)">
+                        <input [class.hidden]="!checklistItem.isEditMode" type="button" value="Anuluj" (click)="setEditState(checklistItem, false)" class="btn btn-warning">
+                    </div>
+                    <div class="col-md-4 btns">
+                        <input type="button" class="btn btn-danger pull-right" (click)="deleteChecklistItem(checklistItem)" value="X">
+                        <input [class.disabled]="checklistItem.isCompleted" (click)="setEditState(checklistItem, true)" type="button" class="btn btn-default pull-right" value="Edytuj">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
