@@ -36,13 +36,15 @@ gulp.task('ts', function (done) {
             "tsScripts/*.ts"
     ])
         .pipe(ts(tsProject), undefined, ts.reporter.fullReporter());
+
+
     return tsResult.js.pipe(gulp.dest('./Scripts'));
 });
 
 gulp.task('watch', ['watch.ts']);
 
 gulp.task('watch.ts', ['ts'], function () {
-    return gulp.watch('tsScripts/*.ts', ['ts']);
+    return gulp.watch('tsScripts/**/*.ts', ['ts']);
 });
 
 gulp.task('default', ['scriptsNStyles', 'watch']);
