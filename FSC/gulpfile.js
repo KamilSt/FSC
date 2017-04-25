@@ -36,8 +36,6 @@ gulp.task('ts', function (done) {
             "tsScripts/*.ts"
     ])
         .pipe(ts(tsProject), undefined, ts.reporter.fullReporter());
-
-
     return tsResult.js.pipe(gulp.dest('./Scripts'));
 });
 

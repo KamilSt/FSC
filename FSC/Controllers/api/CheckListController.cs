@@ -9,6 +9,7 @@ using FSC.ViewModels.Api;
 
 namespace FSC.Controllers.api
 {
+    [Authorize]
     public class CheckListController : ApiController
     {
         private ApplicationDbContext applicationDB = null;
@@ -21,7 +22,7 @@ namespace FSC.Controllers.api
 
         [HttpGet]
         //[Route("api/CheckList/Get")]
-        public IEnumerable<CheckList> Get()
+        public IEnumerable<Checklist> Get()
         {
             var data = applicationDB.CheckLists
                 .Where(x => x.ParentId == 0)
@@ -51,7 +52,7 @@ namespace FSC.Controllers.api
         {
             if (string.IsNullOrWhiteSpace(checklist.Description))
                 return BadRequest();
-            var newChecklist = new CheckList()
+            var newChecklist = new Checklist()
             {
                 Description = checklist.Description,
                 ParentId = checklist.ParentId,
@@ -65,7 +66,7 @@ namespace FSC.Controllers.api
         }
 
         [HttpPut]
-        public IHttpActionResult Put(int id, [FromBody]CheckList value)
+        public IHttpActionResult Put(int id, [FromBody]Checklist value)
         {
             if (id == 0)
                 return BadRequest();

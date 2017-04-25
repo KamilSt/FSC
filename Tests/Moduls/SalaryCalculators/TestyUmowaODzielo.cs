@@ -89,7 +89,7 @@ namespace Tests.Moduls.SalaryCalculators
         [Theory]
         [InlineData(2000, true, 2197.80)]
         [InlineData(3000, true, 3296.70)]
-        public void Sprawdznie_Kalkulatora_dla_kilku_wariantow_wynagrodzenia_z_50_procentem_uzyskania_dochodu
+        public void Sprawdznie_Kalkulatora_dla_kilku_wariantow_wynagrodzenia_z_50_procentowym_kosztem_uzyskania_dochodu
             (decimal _salary, bool _higherCost, decimal ExceptetResult)
         {
             //Arrange

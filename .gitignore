@@ -11,3 +11,4 @@ FSC/App_Data
 FSC/node_modules
 FSC/libs
 FSC/typings/globals
+*.js.map

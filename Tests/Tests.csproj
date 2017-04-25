@@ -68,7 +68,6 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Moduls\SalaryCalculators\Class1.cs" />
     <Compile Include="Moduls\SalaryCalculators\TestyUmowaODzielo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
