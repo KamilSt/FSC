@@ -69,6 +69,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Moduls\SalaryCalculators\TestyUmowaODzielo.cs" />
+    <Compile Include="Moduls\SalaryCalculators\TestyUmowaZlecenie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
