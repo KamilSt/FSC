@@ -243,6 +243,7 @@
     <Content Include="tsScripts\app.component.html" />
     <Content Include="tsScripts\checklist\checkList.css" />
     <Content Include="tsScripts\checklist\checklist.component.html" />
+    <Content Include="tsScripts\navbar.component.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

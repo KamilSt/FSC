@@ -3,7 +3,7 @@
   "name": "aspnet",
   "private": true,
   "scripts": {
-    "postinstall": "typings install",    
+    "postinstall": "typings install",
     "typings": "typings"
   },
   "dependencies": {
@@ -25,13 +25,15 @@
     "zone.js": "^0.6.25"
   },
   "devDependencies": {
-    "typescript": "^2.0.3",
-    "typings":"^1.4.0",
+    "@angular/cli": "^1.0.0-rc.1",
+    "@types/core-js": "^0.9.41",
     "gulp": "^3.9.1",
-    "path": "^0.12.7",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
+    "gulp-tsc": "^1.2.0",
     "gulp-typescript": "^2.13.6",
-    "gulp-tsc": "^1.2.0"
+    "path": "^0.12.7",
+    "typescript": "^2.0.3",
+    "typings": "^1.4.0"
   }
 }

@@ -98,5 +98,7 @@ namespace FSC.Controllers.api
 
             return Ok();
         }
+
+        //pierwszy
     }
 }
