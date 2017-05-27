@@ -186,16 +186,24 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\CheckListController.cs" />
+    <Compile Include="Controllers\api\OrdersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DataLayer\ApplicationDbContext.cs" />
     <Compile Include="DataLayer\Checklist.cs" />
+    <Compile Include="DataLayer\Customer.cs" />
+    <Compile Include="DataLayer\Order.cs" />
+    <Compile Include="DataLayer\OrderItem.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201703111349000_firstSqL.cs" />
     <Compile Include="Migrations\201703111349000_firstSqL.Designer.cs">
       <DependentUpon>201703111349000_firstSqL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705271232353_Orders.cs" />
+    <Compile Include="Migrations\201705271232353_Orders.Designer.cs">
+      <DependentUpon>201705271232353_Orders.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -306,6 +314,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703111349000_firstSqL.resx">
       <DependentUpon>201703111349000_firstSqL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705271232353_Orders.resx">
+      <DependentUpon>201705271232353_Orders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
