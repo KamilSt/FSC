@@ -17,6 +17,9 @@ namespace FSC.DataLayer
             this.Configuration.LazyLoadingEnabled = true;
         }
 
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Checklist> CheckLists { get; set; }
 
         public static ApplicationDbContext Create()
