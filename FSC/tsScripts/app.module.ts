@@ -8,7 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './navbar.component';
 import { ChecklistsComponent } from './checklist/checklist.component';
 import { HomepageComponent } from "./homepage.component";
-import { SalaryCalculatorComponent } from "./salaryCalculator.component";
+import { SalaryCalculatorComponent } from "./salaryCalculator/salaryCalculator.component";
 import { OrdersComponent } from "./orders/orders.component";
 import {NewOrderComponent } from "./orders/newOrder.component";
 

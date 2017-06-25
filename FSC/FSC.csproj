@@ -214,13 +214,22 @@
     <Compile Include="Moduls\ExchangeRates\NBPClient.cs" />
     <Compile Include="Moduls\ExchangeRates\NBPData.cs" />
     <Compile Include="Moduls\ExchangeRates\NBPService.cs" />
+    <Compile Include="Moduls\SalaryCalculators\ContractBuilder.cs" />
+    <Compile Include="Moduls\SalaryCalculators\SalaryCalculator.cs" />
+    <Compile Include="Moduls\SalaryCalculators\Interface\IAccidentInsurance.cs" />
+    <Compile Include="Moduls\SalaryCalculators\Interface\IContractType.cs" />
+    <Compile Include="Moduls\SalaryCalculators\Interface\IUmowaOPrace.cs" />
+    <Compile Include="Moduls\SalaryCalculators\Interface\IUmowaZlecenie.cs" />
+    <Compile Include="Moduls\SalaryCalculators\Interface\IUmowaODzielo.cs" />
+    <Compile Include="Moduls\SalaryCalculators\SalaryCalculatorResult.cs" />
+    <Compile Include="Moduls\SalaryCalculators\UmowaODzielo.cs" />
+    <Compile Include="Moduls\SalaryCalculators\UmowaZlecenie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Api\CheckListDisplayVM.cs" />
     <Compile Include="ViewModels\Api\CreateChecklistVM.cs" />
     <Compile Include="ViewModels\Api\NewOrderVM.cs" />
     <Compile Include="ViewModels\Api\OrderListVM.cs" />
-    <Compile Include="ViewModels\Api\SalaryCalculatorVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -290,7 +299,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="tsScripts\tsconfig.json" />
     <Content Include="typings.json" />
-    <Content Include="Views\Tasks\Index.cshtml" />
     <Content Include="tsScripts\orders\orders.component.html" />
   </ItemGroup>
   <ItemGroup>
@@ -306,7 +314,6 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="tsScripts\app.routs.ts" />
     <TypeScriptCompile Include="tsScripts\app.component.ts" />
     <TypeScriptCompile Include="tsScripts\app.module.ts" />
     <TypeScriptCompile Include="tsScripts\navbar.component.ts" />
@@ -314,11 +321,11 @@
     <TypeScriptCompile Include="tsScripts\orders\orders.service.ts" />
     <TypeScriptCompile Include="tsScripts\orders\order.model.ts" />
     <TypeScriptCompile Include="tsScripts\orders\orders.component.ts" />
-    <TypeScriptCompile Include="tsScripts\salaryCalculator.component.ts" />
     <TypeScriptCompile Include="tsScripts\homepage.component.ts" />
     <TypeScriptCompile Include="tsScripts\checklist\checklist.component.ts" />
     <TypeScriptCompile Include="tsScripts\checklist\checklists.service.ts" />
     <TypeScriptCompile Include="tsScripts\main.ts" />
+    <TypeScriptCompile Include="tsScripts\salaryCalculator\salaryCalculator.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
