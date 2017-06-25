@@ -1,0 +1,88 @@
+﻿<a class="btn btn-default pull-right" routerLink="/orders">Powrót</a>
+
+<section>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Usługa</th>
+                <th>Ilosć</th>
+                <th>Netto</th>
+                <th>VAT</th>
+                <th>Kwota VAT</th>
+                <th>Brutto</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of (newOder)?.Items">
+                <ng-container *ngIf="!item.isEditMode ">
+                    <td></td>
+                    <td>{{item.Servis}}</td>
+                    <td>{{item.Quantity}} </td>
+                    <td>{{item.Rate}} PLN</td>
+                    <td>{{item.VAT}} %</td>
+                    <td>{{item.AmountVAT}} PLN</td>
+                    <td>{{item.Brutto}} PLN</td>
+                    <td>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-success " (click)="setEditState(item, true)">Edytuj </button>
+                            <button type="button" class="btn btn-warning" (click)="deleteItem(item)">Usuń </button>
+                        </div>
+                        <!--<ng-container *ngIf="item.Status===2">Delete-->
+                    </td>
+                </ng-container>
+                <ng-container *ngIf="item.isEditMode">
+                    <td></td>
+                    <td>
+                        <input type="text" [(ngModel)]="item.Servis" (keypress)="updateOrderItem($event, item)">
+                    </td>
+                    <td>
+                        <input type="text" [(ngModel)]="item.Quantity" (keypress)="updateOrderItem($event, item)" style="width: 50px;">
+                    </td>
+                    <td>
+                        <input type="text" [(ngModel)]="item.Rate" (keypress)="updateOrderItem($event, item)">
+                    </td>
+                    <td>
+                        <input type="text" [(ngModel)]="item.VAT" (keypress)="updateOrderItem($event, item)" style="width: 50px;">
+                    </td>
+                    <td>
+                        <span>{{item.AmountVAT}}</span>
+                    </td>
+                    <td>
+                        <input type="text" name="model" placeholder="Model" [(ngModel)]="item.Brutto" style="width: 50px;">
+                    </td>
+                    <td>
+                        <input type="button" value="Anuluj" (click)="setEditState(item, false)" class="btn btn-warning">
+                    </td>
+                </ng-container>
+            </tr>
+
+            <tr style="background-color:slategrey">
+                <td></td>
+                <td>Razem:</td>
+                <td> </td>
+                <td>{{(newOder)?.RateSum}} PLN</td>
+                <td> </td>
+                <td>{{(newOder)?.VATSum}}</td>
+                <td>{{newOder?.BruttoSum}} PLN</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="text" name="model" [(ngModel)]="newOrderItem.Servis" placeholder="Nazwa usługi" (keypress)="addItem($event)"></td>
+                <td><input type="text" name="model" [(ngModel)]="newOrderItem.Quantity" (keypress)="addItem($event)" style="width: 50px;"></td>
+                <td><input type="text" name="model" [(ngModel)]="newOrderItem.Rate" (keypress)="addItem($event)" style="width: 50px;"></td>
+                <td><input type="number" name="model" [(ngModel)]="newOrderItem.VAT" (keypress)="addItem($event)" style="width: 50px;"></td>
+                <td><span style="width: 50px;">  {{newOrderItem.AmountVAT}}</span></td>
+                <td><input type="text" name="model" [(ngModel)]="newOrderItem.Brutto" (keypress)="addItem($event)" style="width: 50px;"></td>
+                <td>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-success " (click)="addItem($event)" [class.disabled]="!canAdd()">Dodaj </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+<button type="button" class="btn btn-success" (click)="saveOrder()">Zapisz !!! </button>

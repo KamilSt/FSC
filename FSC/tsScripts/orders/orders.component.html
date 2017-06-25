@@ -1,0 +1,35 @@
+﻿
+<a class="btn btn-default " routerLink="/newOrder" routerLinkActive="active">Nowe zamówienie </a>
+<section>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Klient</th>
+                <th>Data</th>
+                <th>Kwota brutto</th>
+                <th>Dokumenty</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of (orderListVM)?.Orders">
+                <td></td>
+                <td>{{order.CompanyName}}</td>
+                <td>{{order.Date}}</td>
+                <td>{{order.Total}} PLN</td>
+                <td>
+                    <ng-container *ngIf="!order.Invoiced">
+                        <button type="button" class="btn btn-default " (click)="make(order.Id)">Faktura </button>
+                    </ng-container>
+                </td>
+                <td class="text-right">
+                    <button type="button" class="btn btn-default " (click)="editOrder(order.Id)">Edytuj </button>
+                    <button type="button" class="btn btn-danger" (click)="deleteOrder(order.Id)">Usuń </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<p>Jest: {{orderListVM?.Count}}</p>

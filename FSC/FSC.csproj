@@ -248,10 +248,10 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\systemjs.config.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="tsScripts\app.component.html" />
     <Content Include="tsScripts\checklist\checkList.css" />
     <Content Include="tsScripts\checklist\checklist.component.html" />
     <Content Include="tsScripts\navbar.component.html" />
+    <Content Include="tsScripts\orders\newOrder.component.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -288,6 +288,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="tsScripts\tsconfig.json" />
     <Content Include="typings.json" />
+    <Content Include="Views\Tasks\Index.cshtml" />
+    <Content Include="tsScripts\orders\orders.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -302,8 +304,16 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="tsScripts\app.ts" />
-    <TypeScriptCompile Include="tsScripts\boot.ts" />
+    <TypeScriptCompile Include="tsScripts\app.routs.ts" />
+    <TypeScriptCompile Include="tsScripts\app.component.ts" />
+    <TypeScriptCompile Include="tsScripts\app.module.ts" />
+    <TypeScriptCompile Include="tsScripts\navbar.component.ts" />
+    <TypeScriptCompile Include="tsScripts\orders\newOrder.component.ts" />
+    <TypeScriptCompile Include="tsScripts\orders\orders.service.ts" />
+    <TypeScriptCompile Include="tsScripts\orders\order.model.ts" />
+    <TypeScriptCompile Include="tsScripts\orders\orders.component.ts" />
+    <TypeScriptCompile Include="tsScripts\salaryCalculator.component.ts" />
+    <TypeScriptCompile Include="tsScripts\homepage.component.ts" />
     <TypeScriptCompile Include="tsScripts\checklist\checklist.component.ts" />
     <TypeScriptCompile Include="tsScripts\checklist\checklists.service.ts" />
     <TypeScriptCompile Include="tsScripts\main.ts" />
