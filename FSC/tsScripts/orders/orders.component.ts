@@ -14,7 +14,6 @@ export class OrdersComponent {
     public orderListVM ;
   
     constructor(private _orderServise: OrdersService, private router: Router) {
-
         this._orderServise.getOrders().subscribe(x =>  this.orderListVM = x );
     }
    
@@ -23,6 +22,5 @@ export class OrdersComponent {
     }
 
     deleteOrder(id: number) {
-
     } 
 }

@@ -9,10 +9,15 @@ import { NavbarComponent } from './navbar.component';
 import { ChecklistsComponent } from './checklist/checklist.component';
 import { HomepageComponent } from "./homepage.component";
 import { SalaryCalculatorComponent } from "./salaryCalculator.component";
+import { OrdersComponent } from "./orders/orders.component";
+import {NewOrderComponent } from "./orders/newOrder.component";
 
 const appRoutes: Routes = [
     { path: '', component: HomepageComponent },
     { path: 'home', component: HomepageComponent },
+    { path: 'orders', component: OrdersComponent },
+    { path: 'newOrder', component: NewOrderComponent },
+    { path: 'newOrder/:id', component: NewOrderComponent },
     { path: 'salaryCalc', component: SalaryCalculatorComponent },
     { path: 'checkLists', component: ChecklistsComponent },
     { path: '**', component: HomepageComponent }
@@ -20,7 +25,7 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports: [BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes)],
-    declarations: [AppComponent, ChecklistsComponent, NavbarComponent, HomepageComponent, SalaryCalculatorComponent],
-    bootstrap: [AppComponent, ChecklistsComponent, NavbarComponent]
+    declarations: [AppComponent, ChecklistsComponent, NavbarComponent, HomepageComponent, SalaryCalculatorComponent, OrdersComponent, NewOrderComponent],
+    bootstrap: [AppComponent,  NavbarComponent]
 })
 export class AppModule { }

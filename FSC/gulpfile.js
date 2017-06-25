@@ -1,4 +1,4 @@
-/// <binding />
+/// <binding ProjectOpened='default' />
 var ts = require('gulp-typescript');
 var gulp = require('gulp');
 var clean = require('gulp-clean');
@@ -33,7 +33,7 @@ var tsProject = ts.createProject('tsScripts/tsconfig.json', {
 gulp.task('ts', function (done) {
     //var tsResult = tsProject.src()
     var tsResult = gulp.src([
-            "tsScripts/*.ts"
+            "tsScripts/**/*.ts"
     ])
         .pipe(ts(tsProject), undefined, ts.reporter.fullReporter());
     return tsResult.js.pipe(gulp.dest('./Scripts'));
