@@ -218,6 +218,8 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Api\CheckListDisplayVM.cs" />
     <Compile Include="ViewModels\Api\CreateChecklistVM.cs" />
+    <Compile Include="ViewModels\Api\NewOrderVM.cs" />
+    <Compile Include="ViewModels\Api\OrderListVM.cs" />
     <Compile Include="ViewModels\Api\SalaryCalculatorVM.cs" />
   </ItemGroup>
   <ItemGroup>
