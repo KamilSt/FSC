@@ -1,12 +1,12 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Checklist, ChecklistVM, ChecklistsService } from '../checklist/checklists.service';
+import { Checklist, ChecklistVM, ChecklistsService } from "../checklist/checklists.service";
 
 @Component({
-    selector: 'checklist',
-    templateUrl: './tsScripts/checklist/checklist.component.html',
-    styleUrls: ['./tsScripts/checklist/checkList.css'],
-    // directives:[],
+    selector: "checklist",
+    templateUrl: "./tsScripts/checklist/checklist.component.html",
+    styleUrls: ["./tsScripts/checklist/checkList.css"],
+    // directives:[],       
     providers: [ChecklistsService]
 })
 export class ChecklistsComponent {

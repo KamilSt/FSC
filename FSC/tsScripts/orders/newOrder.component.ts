@@ -6,7 +6,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: "newOrder",
-    templateUrl: "./tsScripts/orders/newOrder.component.html",     
+    templateUrl: "./tsScripts/orders/newOrder.component.html",
     providers: [OrdersService]
 })
 export class NewOrderComponent {
@@ -21,7 +21,7 @@ export class NewOrderComponent {
 
     ngOnInit() {
         let id = this.route.snapshot.params['Id'];
-        if (!Number.isNaN(id)) {
+        if (typeof id != "undefined" && !Number.isNaN(id)) {
             this._orderServise.getOrder(id).subscribe(x => {
                 this.showOrder(x);
             });
@@ -45,7 +45,8 @@ export class NewOrderComponent {
         if (order.Id === 0) {
             this._orderServise.createOrder(order).subscribe(x => this.showOrder(x));
         }
-        this._orderServise.updateOrder(order).subscribe(x => this.showOrder(x));
+        else
+            this._orderServise.updateOrder(order).subscribe(x => this.showOrder(x));
     }
 
     addItem($event) {
@@ -62,7 +63,7 @@ export class NewOrderComponent {
             this.setEditState(item, false);
         }
     }
-  
+
     deleteItem(item: newOrderItem) {
         if (item.Status == Status.New)
             this.newOder.Items.splice(this.newOder.Items.indexOf(item), 1);
