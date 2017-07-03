@@ -2,7 +2,7 @@
 import { FormsModule } from "@angular/forms";
 
 @Component({
-    selector: "aaa",
+    selector: "",
     templateUrl: "./tsScripts/salaryCalculator/salaryCalculator.component.html",
     providers: []
 })
