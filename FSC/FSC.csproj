@@ -186,6 +186,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\CheckListController.cs" />
+    <Compile Include="Controllers\api\FinancesController.cs" />
     <Compile Include="Controllers\api\OrdersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -263,6 +264,8 @@
     <Content Include="tsScripts\checklist\checklist.component.html" />
     <Content Include="tsScripts\navbar.component.html" />
     <Content Include="tsScripts\orders\newOrder.component.html" />
+    <Content Include="tsScripts\salaryCalculator\salaryCalculator.component.html" />
+    <Content Include="tsScripts\salaryCalculator\salaryCalculator.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -325,7 +328,9 @@
     <TypeScriptCompile Include="tsScripts\checklist\checklist.component.ts" />
     <TypeScriptCompile Include="tsScripts\checklist\checklists.service.ts" />
     <TypeScriptCompile Include="tsScripts\main.ts" />
+    <TypeScriptCompile Include="tsScripts\salaryCalculator\salaryCalculator.model.ts" />
     <TypeScriptCompile Include="tsScripts\salaryCalculator\salaryCalculator.component.ts" />
+    <TypeScriptCompile Include="tsScripts\salaryCalculator\salaryCalculator.service.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
