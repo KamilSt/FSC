@@ -326,6 +326,7 @@
     <TypeScriptCompile Include="tsScripts\checklist\checklist.component.ts" />
     <TypeScriptCompile Include="tsScripts\checklist\checklists.service.ts" />
     <TypeScriptCompile Include="tsScripts\main.ts" />
+    <TypeScriptCompile Include="tsScripts\pipes\PlCurrency.pipe.ts" />
     <TypeScriptCompile Include="tsScripts\salaryCalculator\salaryCalculator.component.ts" />
   </ItemGroup>
   <ItemGroup>

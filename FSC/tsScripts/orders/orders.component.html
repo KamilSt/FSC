@@ -17,7 +17,8 @@
                 <td></td>
                 <td>{{order.CompanyName}}</td>
                 <td>{{order.Date}}</td>
-                <td>{{order.Total}} PLN</td>
+            
+                <td>{{order.Total | plCurrency}} </td>
                 <td>
                     <ng-container *ngIf="!order.Invoiced">
                         <button type="button" class="btn btn-default " (click)="make(order.Id)">Faktura </button>

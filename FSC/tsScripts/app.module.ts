@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
+import { PlCurrencyPipe } from "./pipes/PlCurrency.pipe";
+
 import { NavbarComponent } from './navbar.component';
 import { ChecklistsComponent } from './checklist/checklist.component';
 import { HomepageComponent } from "./homepage.component";
 import { SalaryCalculatorComponent } from "./salaryCalculator/salaryCalculator.component";
 import { OrdersComponent } from "./orders/orders.component";
-import {NewOrderComponent } from "./orders/newOrder.component";
+import { NewOrderComponent } from "./orders/newOrder.component";
 
 const appRoutes: Routes = [
     { path: '', component: HomepageComponent },
@@ -25,7 +27,14 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports: [BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes)],
-    declarations: [AppComponent, ChecklistsComponent, NavbarComponent, HomepageComponent, SalaryCalculatorComponent, OrdersComponent, NewOrderComponent],
-    bootstrap: [AppComponent,  NavbarComponent]
+    declarations: [AppComponent,
+        ChecklistsComponent,
+        NavbarComponent,
+        HomepageComponent,
+        SalaryCalculatorComponent,
+        OrdersComponent,
+        NewOrderComponent,
+        PlCurrencyPipe],
+    bootstrap: [AppComponent, NavbarComponent]
 })
 export class AppModule { }
