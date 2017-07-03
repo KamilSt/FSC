@@ -1,0 +1,16 @@
+﻿.salaryFrom {
+    width: 170px;
+}
+input[name=salary] {    
+width: 255px;
+}    
+input[name=accidentInsurance] {    
+width: 120px;
+}  
+input[name=higherCostOfGettingIncome] {    
+    position: relative;
+    top: -2px;
+}
+button[type=submit] {
+    margin-bottom: 30px;
+}

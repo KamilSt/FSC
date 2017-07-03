@@ -1,1 +1,84 @@
-﻿<span> 0 1 2 ...</span>
+﻿<section>
+    <h4>Kalkulator wynagrodzeń</h4>
+    <form (ngSubmit)="onSubmit()" class="form-horizontal">
+        <div class="form-group">
+            <div class="btn-group" id="contract">
+                <label class="btn btn-default ">
+                    <input type="radio" name="typeOfContract" value="uop" [(ngModel)]="salaryVM.typeOfContract"> Umowa o pracę
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" name="typeOfContract" value="uz" [(ngModel)]="salaryVM.typeOfContract"> Umowa zlecenie
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" name="contract" value="uod" [(ngModel)]="salaryVM.typeOfContract"> Umowa o dzieło
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-10 form-inline" style="padding-left:0px">
+                <input placeholder="Wynagrodzenie" name="salary" [(ngModel)]="salaryVM.salary" class="form-control" />
+                <select class="form-control salaryFrom" name="salaryFrom" required [(ngModel)]="salaryVM.salaryFrom">
+                    <option *ngFor="let pow of salaryFromList" [ngValue]="pow.value">{{pow.display}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" *ngIf="salaryVM.typeOfContract==='uop'">
+            <div class="col-sm-3"> praca w miejscu zamieszkania</div>
+            <div class="col-sm-3 ">
+                <input [(ngModel)]="salaryVM.workAtLiving" type="checkbox" name="workAtLiving" class="btn btn-primary " value="true">
+            </div>
+        </div>
+        <!--<div class="form-group" *ngIf="salaryVM.typeOfContract==='uop' ||salaryVM.typeOfContract==='uz'">
+            <div class="col-sm-3 ">  stopa procentowa składki<br /> na ubezpieczenie wypadkowe:</div>
+            <div class="col-sm-3 ">
+               <input [(ngModel)]="salaryVM.accidentInsurance" type="number" name="accidentInsurance" class="form-control" step="0.01" min="0" checked>
+               </div>
+        </div>-->
+        <div class="form-group" *ngIf="salaryVM.typeOfContract==='uz'">
+            <div class="col-sm-3"> ubezpieczenie zdrowotne</div>
+            <div class="col-sm-3 ">
+                <input type="checkbox" name="healthInsurance" class="btn btn-primary" value="true" [(ngModel)]="salaryVM.healthInsurance">
+            </div>
+        </div>
+        <div class="form-group" *ngIf="salaryVM.typeOfContract==='uod' ||salaryVM.typeOfContract==='uz'">
+            <div class="col-sm-3 ">   koszty uzyskania przychodu</div>
+            <div class="col-sm-3 ">
+                <input type="radio" name="higherCostOfGettingIncome" class="btn btn-primary" value="false" checked [(ngModel)]="salaryVM.higherCostOfGettingIncome">
+                20%
+                <input type="radio" name="higherCostOfGettingIncome" class="btn btn-primary" value="true" checked [(ngModel)]="salaryVM.higherCostOfGettingIncome">
+                50%
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Oblicz</button>
+    </form>
+</section>
+
+<div class="row" *ngIf="result!=null">
+    <div class="col-lg-6">
+        <div>
+            <div class="col-lg-10" style="background-color:gainsboro">
+                <div class="col-lg-7">kwota netto</div>
+                <div class="col-lg-5 text-right">{{result.NetSalary}}</div>
+            </div>
+            <div class="col-lg-10" *ngFor="let item of (result)?.SalaryCosts">
+                <div class="col-lg-7">{{item.CostName}}</div>
+                <div class="col-lg-5 text-right">{{item.CostValue}} PLN</div>
+            </div>
+            <div class="col-lg-10" style="background-color:gainsboro">
+                <div class="col-lg-7">kwota brutto</div>
+                <div class="col-lg-5 text-right">{{result.GrossSalary}}</div>
+            </div>
+            <div class="col-lg-10">
+                <div class="col-lg-7">podstawa opodatkowania</div>
+                <div class="col-lg-5 text-right">.</div>
+            </div>
+            <div class="col-lg-10">
+                <div class="col-lg-7">koszt uzyskania przychodu</div>
+                <div class="col-lg-5 text-right">.</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        Wykres
+    </div>
+</div>
