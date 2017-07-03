@@ -4,8 +4,9 @@
 export class PlCurrencyPipe implements PipeTransform {
 
     transform(value: number): string {
-        var parts = value.toString().split(".");
+        var valueRound = (Math.round(value * 100) / 100).toFixed(2)
+        var parts = valueRound.split(".");
         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-        return parts.join(",")+" PLN";
+        return parts.join(",") + " PLN";
     }
 }
