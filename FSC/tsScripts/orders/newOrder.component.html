@@ -3,27 +3,27 @@
 <section>
     <table class="table">
         <thead>
-            <tr>
+            <tr class="text-right">
                 <th></th>
-                <th>Usługa</th>
-                <th>Ilosć</th>
-                <th>Netto</th>
-                <th>VAT</th>
-                <th>Kwota VAT</th>
-                <th>Brutto</th>
+                <th class="text-left">Usługa</th>
+                <th class="text-right">Ilosć</th>
+                <th class="text-right">Netto</th>
+                <th class="text-right">VAT</th>
+                <th class="text-right">Kwota VAT</th>
+                <th class="text-right">Brutto</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let item of (newOder)?.Items">
+            <tr *ngFor="let item of (newOder)?.Items" class="text-right">
                 <ng-container *ngIf="!item.isEditMode ">
                     <td></td>
-                    <td>{{item.Servis}}</td>
+                    <td class="text-left">{{item.Servis}}</td>
                     <td>{{item.Quantity}} </td>
-                    <td>{{item.Rate}} PLN</td>
+                    <td>{{item.Rate |plCurrency}} </td>
                     <td>{{item.VAT}} %</td>
-                    <td>{{item.AmountVAT}} PLN</td>
-                    <td>{{item.Brutto}} PLN</td>
+                    <td>{{item.AmountVAT |plCurrency}}</td>
+                    <td>{{item.Brutto |plCurrency}}</td>
                     <td>
                         <div class="pull-right">
                             <button type="button" class="btn btn-success " (click)="setEditState(item, true)">Edytuj </button>
@@ -58,19 +58,19 @@
                 </ng-container>
             </tr>
 
-            <tr style="background-color:slategrey">
+            <tr style="background-color:slategrey" class="text-right">
                 <td></td>
-                <td>Razem:</td>
+                <td class="text-left">Razem:</td>
                 <td> </td>
-                <td>{{(newOder)?.RateSum}} PLN</td>
+                <td>{{(newOder)?.RateSum |plCurrency}}</td>
                 <td> </td>
-                <td>{{(newOder)?.VATSum}}</td>
-                <td>{{newOder?.BruttoSum}} PLN</td>
+                <td>{{(newOder)?.VATSum |plCurrency}}</td>
+                <td>{{newOder?.BruttoSum |plCurrency}}</td>
                 <td></td>
             </tr>
-            <tr>
+            <tr class="text-right">
                 <td></td>
-                <td><input type="text" name="model" [(ngModel)]="newOrderItem.Servis" placeholder="Nazwa usługi" (keypress)="addItem($event)"></td>
+                <td class="text-left"><input type="text" name="model" [(ngModel)]="newOrderItem.Servis" placeholder="Nazwa usługi" (keypress)="addItem($event)"></td>
                 <td><input type="text" name="model" [(ngModel)]="newOrderItem.Quantity" (keypress)="addItem($event)" style="width: 50px;"></td>
                 <td><input type="text" name="model" [(ngModel)]="newOrderItem.Rate" (keypress)="addItem($event)" style="width: 50px;"></td>
                 <td><input type="number" name="model" [(ngModel)]="newOrderItem.VAT" (keypress)="addItem($event)" style="width: 50px;"></td>
