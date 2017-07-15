@@ -193,6 +193,9 @@
     <Compile Include="DataLayer\ApplicationDbContext.cs" />
     <Compile Include="DataLayer\Checklist.cs" />
     <Compile Include="DataLayer\Customer.cs" />
+    <Compile Include="DataLayer\InvoiceCounter.cs" />
+    <Compile Include="DataLayer\InvoiceDocument.cs" />
+    <Compile Include="DataLayer\InvoiceTemplate.cs" />
     <Compile Include="DataLayer\Order.cs" />
     <Compile Include="DataLayer\OrderItem.cs" />
     <Compile Include="Global.asax.cs">

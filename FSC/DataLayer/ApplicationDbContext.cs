@@ -22,6 +22,10 @@ namespace FSC.DataLayer
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Checklist> CheckLists { get; set; }
 
+        public DbSet<InvoiceTemplate> InvoiceTemplates { get; set; }
+        public DbSet<InvoiceCounter> InvoiceCounters { get; set; }
+        public DbSet<InvoiceDocument> InvoiceDocuments { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
