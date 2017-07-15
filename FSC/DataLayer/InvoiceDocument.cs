@@ -7,7 +7,7 @@ namespace FSC.DataLayer
     {
         public int Id { get; set; }
         public string InvoiceNmuber { get; set; }
-        public int WorkOrderId { get; set; }
+        public int OrderId { get; set; }
         [ForeignKey("OrderId")]
         public virtual Order Order { get; set; }
         public int CustomerId { get; set; }
