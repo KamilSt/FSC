@@ -21,7 +21,10 @@
                 <td>{{order.Total | plCurrency}} </td>
                 <td>
                     <ng-container *ngIf="!order.Invoiced">
-                        <button type="button" class="btn btn-default " (click)="make(order.Id)">Faktura </button>
+                        <button type="button" class="btn btn-default " (click)="makeInvoice(order)">Utwórz fakturę</button>
+                    </ng-container>
+                    <ng-container *ngIf="order.Invoiced">
+                        <button type="button" class="btn btn-default ">{{order?.InvoiceNumber}} </button>
                     </ng-container>
                 </td>
                 <td class="text-right">

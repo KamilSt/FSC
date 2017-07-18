@@ -222,6 +222,11 @@
     <Compile Include="Moduls\ExchangeRates\NBPClient.cs" />
     <Compile Include="Moduls\ExchangeRates\NBPData.cs" />
     <Compile Include="Moduls\ExchangeRates\NBPService.cs" />
+    <Compile Include="Moduls\Printing\DocumentGenerator.cs" />
+    <Compile Include="Moduls\Printing\DocumentGeneratorFactory.cs" />
+    <Compile Include="Moduls\Printing\DocumentTypeEnum.cs" />
+    <Compile Include="Moduls\Printing\Invoice\GeneratorInvoices.cs" />
+    <Compile Include="Moduls\Printing\Invoice\InvoiceGenerator.cs" />
     <Compile Include="Moduls\SalaryCalculators\ContractBuilder.cs" />
     <Compile Include="Moduls\SalaryCalculators\SalaryCalculator.cs" />
     <Compile Include="Moduls\SalaryCalculators\Interface\IAccidentInsurance.cs" />

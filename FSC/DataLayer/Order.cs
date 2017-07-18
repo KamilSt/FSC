@@ -20,5 +20,6 @@ namespace FSC.DataLayer
         public bool Invoiced { get; set; }
         public ApplicationUser User { get; set; }
         public string UserId { get; set; }
+        public virtual List<InvoiceDocument> InvoiceDocuments { get; set; }
     }
 }

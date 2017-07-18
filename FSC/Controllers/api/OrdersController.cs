@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FSC.DataLayer;
+using FSC.Moduls.Printing;
 using FSC.ViewModels.Api;
 using Microsoft.AspNet.Identity;
 using System;
@@ -26,19 +27,16 @@ namespace FSC.Controllers.api
         public OrderListVM Get()
         {
             OrderListVM vm = new OrderListVM();
-            var list = applicationDB.Orders.ToList();//Filters
-
-            foreach (var item in list) //autoMapper
+            var listItem = applicationDB.Orders.Select(order => new OrderListItemVM
             {
-                vm.Orders.Add(new OrderListItemVM()
-                {
-                    Id = item.OrderId,
-                    CompanyName = item.Customer.CompanyName,
-                    Date = item.OrderDateTime.ToShortDateString(),
-                    Total = item.OrderItems.Sum(x => x.Quantity * x.Rate *  (1+ (x.VAT/100))),
-                    Invoiced = item.Invoiced
-                });
-            }
+                Id = order.OrderId,
+                CompanyName = order.Customer.CompanyName,
+                Date = order.OrderDateTime.ToShortDateString(),
+                Total = order.OrderItems.Sum(s => s.Quantity * s.Rate * (1 + (s.VAT / 100))),
+                Invoiced = order.Invoiced,
+                InvoiceNumber = order.InvoiceDocuments.FirstOrDefault().InvoiceNmuber
+            });//Filters
+            vm.Orders.AddRange(listItem);
             vm.Count = vm.Orders.Count();
             return vm;
         }
@@ -130,7 +128,7 @@ namespace FSC.Controllers.api
             newOrderVM.Id = order.OrderId;
             return Ok(newOrderVM);
         }
-        
+
         [Route("api/Orders/Get/{id:int:max(10000)}")]
         public IHttpActionResult Get(int id)
         {
@@ -143,6 +141,26 @@ namespace FSC.Controllers.api
             var newOrderVM = Mapper.Map<NewOrderVM>(order);
             newOrderVM.Id = order.OrderId;
             return Ok(newOrderVM);
+        }
+
+        [HttpGet]
+        [Route("api/Orders/CreateInvoice/{id:int:max(10000)}")]
+        public IHttpActionResult CreateInvoice(int id)
+        {
+            if (id == 0)
+                return NotFound();
+            var order = applicationDB.Orders.FirstOrDefault(x => x.OrderId == id);
+            if (order == null)
+                return NotFound();
+
+            order.Invoiced = true;
+            var invoice = DocumentGeneratorFactory.GetGenerator(DocumentTypeEnum.Invoice);
+            invoice.Generate();
+            invoice.InvoiceDocument.OrderId = id;
+            invoice.InvoiceDocument.CustomerId = order.CustomerId;
+            applicationDB.InvoiceDocuments.Add(invoice.InvoiceDocument);
+            applicationDB.SaveChanges();
+            return Ok(new { Id = invoice.InvoiceDocument.Id, InvoiceNmuber = invoice.InvoiceDocument.InvoiceNmuber });
         }
     }
 }

@@ -29,7 +29,11 @@ export class OrdersService {
             .map((response: Response) => <Order>response.json())
             .catch(this.hendleError);
     }
-
+    createInvoice(id) {
+        return this._http.get(this.address + 'CreateInvoice/' + id, this.requestOptions())
+            .map((response: Response) => response.json())
+            .catch(this.hendleError);
+    }
     address: string = "api/Orders/";
     requestOptions(): RequestOptions {
         let headers = new Headers({ 'Content-Type': 'application/json' });

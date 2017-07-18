@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FSC.DataLayer;
+using System;
 
 namespace FSC.Moduls.Printing
 {
@@ -9,6 +10,7 @@ namespace FSC.Moduls.Printing
         }
         public DateTime DateOfInvoice;
         public string InvoiceNumber { get; set; }
+        public InvoiceDocument InvoiceDocument { get; set; }
         public byte[] PDFFile;
     }
 }

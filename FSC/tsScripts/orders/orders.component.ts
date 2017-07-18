@@ -23,4 +23,12 @@ export class OrdersComponent {
 
     deleteOrder(id: number) {
     } 
+    makeInvoice(order) {
+        this._orderServise.createInvoice(order.Id).subscribe(x => this.showInvoiceNumber(x, order));
+    }
+    showInvoiceNumber(result, order) {
+        var orderToUpdate = this.orderListVM.Orders.find(x => x == order);
+        orderToUpdate.Invoiced = true;
+        orderToUpdate.InvoiceNumber = result.InvoiceNmuber;
+   }
 }
