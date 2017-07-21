@@ -186,6 +186,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\CheckListController.cs" />
+    <Compile Include="Controllers\api\CustomersController.cs" />
     <Compile Include="Controllers\api\FinancesController.cs" />
     <Compile Include="Controllers\api\OrdersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -241,6 +242,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Api\CheckListDisplayVM.cs" />
     <Compile Include="ViewModels\Api\CreateChecklistVM.cs" />
+    <Compile Include="ViewModels\Api\CustomersVM.cs" />
     <Compile Include="ViewModels\Api\FormSalaryCalculatorVM.cs" />
     <Compile Include="ViewModels\Api\NewOrderVM.cs" />
     <Compile Include="ViewModels\Api\OrderListVM.cs" />
@@ -275,6 +277,7 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="tsScripts\checklist\checkList.css" />
     <Content Include="tsScripts\checklist\checklist.component.html" />
+    <Content Include="tsScripts\customer\customers.component.html" />
     <Content Include="tsScripts\navbar.component.html" />
     <Content Include="tsScripts\orders\newOrder.component.html" />
     <Content Include="tsScripts\salaryCalculator\salaryCalculator.component.html" />
@@ -332,6 +335,9 @@
   <ItemGroup>
     <TypeScriptCompile Include="tsScripts\app.component.ts" />
     <TypeScriptCompile Include="tsScripts\app.module.ts" />
+    <TypeScriptCompile Include="tsScripts\customer\customers.service.ts" />
+    <TypeScriptCompile Include="tsScripts\customer\customers.component.ts" />
+    <TypeScriptCompile Include="tsScripts\customer\customerEdit.component.ts" />
     <TypeScriptCompile Include="tsScripts\navbar.component.ts" />
     <TypeScriptCompile Include="tsScripts\orders\newOrder.component.ts" />
     <TypeScriptCompile Include="tsScripts\orders\orders.service.ts" />

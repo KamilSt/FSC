@@ -1,0 +1,25 @@
+﻿
+<cutomer-edit [customer]=editableCustomer (save)="save($event)"></cutomer-edit>
+
+<section>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nazwa firmy</th>
+                <th>Miasto</th>
+                <th>NIP</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customersVM">
+                <td>{{customer.CompanyName}}</td>
+                <td>{{customer.City}}</td>
+                <td>{{customer.NIP}} </td>
+                <td class="text-right">
+                    <button type="button" class="btn btn-default " (click)="edit(customer)">Edytuj </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
