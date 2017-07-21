@@ -16,7 +16,7 @@
             <tr *ngFor="let order of (orderListVM)?.Orders">
                 <td></td>
                 <td>{{order.CompanyName}}</td>
-                <td>{{order.Date}}</td>
+                <td>{{order.Date | date:'d.MM.y'}}</td>
             
                 <td>{{order.Total | plCurrency}} </td>
                 <td>

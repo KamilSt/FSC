@@ -31,7 +31,7 @@ namespace FSC.Controllers.api
             {
                 Id = order.OrderId,
                 CompanyName = order.Customer.CompanyName,
-                Date = order.OrderDateTime.ToShortDateString(),
+                Date = order.OrderDateTime,
                 Total = order.OrderItems.Sum(s => s.Quantity * s.Rate * (1 + (s.VAT / 100))),
                 Invoiced = order.Invoiced,
                 InvoiceNumber = order.InvoiceDocuments.FirstOrDefault().InvoiceNmuber
