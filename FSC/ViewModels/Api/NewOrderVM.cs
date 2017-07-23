@@ -8,6 +8,7 @@ namespace FSC.ViewModels.Api
     public class NewOrderVM
     {
         public int Id { get; set; }
+        public int CustomerId { get; set; }
         public string Description { get; set; }
 
         public List<NewOrderItem> OrderItems { get; set; }

@@ -1,6 +1,6 @@
 ﻿
 export class newOrder {
-    constructor(public Id: number, public Description: string, public Items: newOrderItem[]) { }
+    constructor(public Id: number, public CustomerId: number, public Description: string, public Items: newOrderItem[]) { }
 
     get BruttoSum(): string {
         let sum = 0;
@@ -54,6 +54,7 @@ export class newOrderItem {
 
 export class Order {
     public Id: number;  
+    CustomerId: number; 
     Description: string;
     public OrderItems: OrderItem[];
 

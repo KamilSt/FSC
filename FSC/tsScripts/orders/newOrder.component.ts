@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from "@angular/core";
+﻿import { Component, OnInit} from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { OrdersService } from "../orders/orders.service";
 import { newOrder, newOrderItem, Order, OrderItem, Status } from "../orders/order.model";
@@ -26,13 +26,13 @@ export class NewOrderComponent {
                 this.showOrder(x);
             });
         }
-        this.newOder = new newOrder(0, "", new Array<newOrderItem>());
+        this.newOder = new newOrder(0,0, "", new Array<newOrderItem>());
         this.newOrderItem = new newOrderItem(0, "", 0, 0, 0, Status.New);
 
     }
 
     showOrder(order: Order) {
-        this.newOder = new newOrder(order.Id, order.Description, new Array<newOrderItem>());
+        this.newOder = new newOrder(order.Id, order.CustomerId, order.Description, new Array<newOrderItem>());
         order.OrderItems.forEach((item, i) => {
             this.newOder.Items.push(new newOrderItem(item.OrderItemId, item.ServiceItemName, item.Quantity, item.Rate, item.VAT, Status.Orginal));
         })

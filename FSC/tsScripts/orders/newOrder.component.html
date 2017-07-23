@@ -1,5 +1,5 @@
 ﻿<a class="btn btn-default pull-right" routerLink="/orders">Powrót</a>
-
+<customer-selector (select)="newOder.CustomerId=$event" [customerId]="newOder.CustomerId"></customer-selector>
 <section>
     <table class="table">
         <thead>

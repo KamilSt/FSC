@@ -46,7 +46,7 @@ namespace FSC.Controllers.api
         {
             var newOrder = new Order()
             {
-                CustomerId = 1,
+                CustomerId = value.CustomerId,
                 Description = value.Description,
                 OrderDateTime = DateTime.UtcNow,
                 OrderItems = new List<OrderItem>(),
@@ -80,7 +80,7 @@ namespace FSC.Controllers.api
             if (order == null)
                 return NotFound();
             order.Description = value.Description;
-
+            order.CustomerId = value.CustomerId;
             foreach (var item in value.OrderItems)
             {
                 if (item.Status == 0) // New,
