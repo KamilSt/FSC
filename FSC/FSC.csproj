@@ -338,6 +338,7 @@
     <TypeScriptCompile Include="tsScripts\customer\customers.service.ts" />
     <TypeScriptCompile Include="tsScripts\customer\customers.component.ts" />
     <TypeScriptCompile Include="tsScripts\customer\customerEdit.component.ts" />
+    <TypeScriptCompile Include="tsScripts\customer\customerSelector.component.ts" />
     <TypeScriptCompile Include="tsScripts\navbar.component.ts" />
     <TypeScriptCompile Include="tsScripts\orders\newOrder.component.ts" />
     <TypeScriptCompile Include="tsScripts\orders\orders.service.ts" />

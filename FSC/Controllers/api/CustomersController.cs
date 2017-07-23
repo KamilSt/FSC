@@ -1,4 +1,5 @@
-﻿using FSC.DataLayer;
+﻿using AutoMapper;
+using FSC.DataLayer;
 using FSC.ViewModels.Api;
 using Microsoft.AspNet.Identity;
 using System;
@@ -37,6 +38,14 @@ namespace FSC.Controllers.api
             });
 
             return listItem;
+        }
+
+        [Route("api/Customers/Get/{id:int:max(10000)}")]          
+        public CustomersVM Get(int id)
+        {
+            var customer = applicationDB.Customers.FirstOrDefault(x => x.CustomerId == id);
+            var result = Mapper.Map<CustomersVM>(customer);
+            return result;
         }
 
         [HttpPost]
