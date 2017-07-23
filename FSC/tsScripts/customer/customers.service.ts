@@ -17,13 +17,13 @@ export class customersVM {
 export class CustomersService {
     constructor(private _http: Http) { }
 
-    getCutomers() {
+    getCustomers() {
         return this._http.get(this.address + 'Get', this.requestOptions())
             .map((response: Response) => <customersVM[]>response.json())
             .catch(this.hendleError);
     }
 
-    getCutomer(id: number) {
+    getCustomer(id: number) {
         return this._http.get(this.address + 'Get/' + id)
             .map((response: Response) => <customersVM>response.json())
             .catch(this.hendleError);

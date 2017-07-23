@@ -30,7 +30,7 @@ export class CustomersComponent {
     }
 
     private reload() {
-        this._customersService.getCutomers().subscribe(x => this.customersVM = x);
+        this._customersService.getCustomers().subscribe(x => this.customersVM = x);
     }
 }
 
