@@ -25,22 +25,11 @@ namespace FSC.Controllers.api
 
         public IEnumerable<CustomersVM> Get()
         {
-            var listItem = applicationDB.Customers.Select(cutomer => new CustomersVM
-            {
-                CustomerId = cutomer.CustomerId,
-                CompanyName = cutomer.CompanyName,
-                NIP = cutomer.NIP,
-                AccountNumber = cutomer.AccountNumber,
-                Address = cutomer.Address,
-                City = cutomer.City,
-                Phone = cutomer.Phone,
-
-            });
-
-            return listItem;
+            var customers = Mapper.Map<IEnumerable<CustomersVM>>(applicationDB.Customers);
+            return customers;
         }
 
-        [Route("api/Customers/Get/{id:int:max(10000)}")]          
+        [Route("api/Customers/Get/{id:int:max(10000)}")]
         public CustomersVM Get(int id)
         {
             var customer = applicationDB.Customers.FirstOrDefault(x => x.CustomerId == id);
@@ -53,15 +42,7 @@ namespace FSC.Controllers.api
         {
             if (customerVM == null)
                 return BadRequest();
-            var customer = new Customer()
-            {
-                CompanyName = customerVM.CompanyName,
-                Address = customerVM.Address,
-                City = customerVM.City,
-                AccountNumber = customerVM.AccountNumber,
-                NIP = customerVM.NIP,
-                Phone = customerVM.Phone
-            };
+            var customer = Mapper.Map<CustomersVM, Customer>(customerVM);
             applicationDB.Customers.Add(customer);
             applicationDB.SaveChanges();
             return Created(customer.CustomerId.ToString(), customer);
@@ -75,16 +56,10 @@ namespace FSC.Controllers.api
             var customer = applicationDB.Customers.FirstOrDefault(x => x.CustomerId == Id);
             if (customer == null)
                 return NotFound();
-            customer.CompanyName = customerVM.CompanyName;
-            customer.Address = customerVM.Address;
-            customer.City = customerVM.City;
-            customer.AccountNumber = customerVM.AccountNumber;
-            customer.NIP = customerVM.NIP;
-            customer.Phone = customerVM.Phone;
-
+            Mapper.Map<CustomersVM, Customer>(customerVM, customer);
             applicationDB.Entry(customer).State = EntityState.Modified;
             applicationDB.SaveChanges();
             return Ok();
         }
-    }   
+    }
 }

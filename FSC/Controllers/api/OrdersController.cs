@@ -56,15 +56,8 @@ namespace FSC.Controllers.api
             applicationDB.SaveChanges();
             foreach (var item in value.OrderItems)
             {
-                applicationDB.OrderItems.Add(new OrderItem()
-                {
-                    OrderId = newOrder.OrderId,
-                    Rate = item.Rate,
-                    Quantity = item.Quantity,
-                    VAT = item.VAT,
-                    ServiceItemCode = item.Servis,
-                    ServiceItemName = item.Servis,
-                });
+                var order = new OrderItem() { OrderId = newOrder.OrderId };
+                applicationDB.OrderItems.Add(Mapper.Map<NewOrderItem, OrderItem>(item, order));
             }
             applicationDB.SaveChanges();
             value.Id = newOrder.OrderId;
@@ -79,39 +72,27 @@ namespace FSC.Controllers.api
             var order = applicationDB.Orders.FirstOrDefault(x => x.OrderId == id);
             if (order == null)
                 return NotFound();
-            order.Description = value.Description;
-            order.CustomerId = value.CustomerId;
+            Mapper.Map<NewOrderVM, Order>(value, order);
             foreach (var item in value.OrderItems)
             {
                 if (item.Status == 0) // New,
                 {
-                    var newItem = new OrderItem()
-                    {
-                        OrderId = value.Id,
-                        Quantity = item.Quantity,
-                        Rate = item.Rate,
-                        ServiceItemName = item.Servis,
-                        ServiceItemCode = item.Servis,
-                        VAT = item.VAT,
-                    };
+                    var newItem = Mapper.Map<OrderItem>(item);
+                    newItem.OrderId = value.Id;
                     applicationDB.Entry(newItem).State = EntityState.Added;
                 }
                 if (item.Status == 1) //Modyficate,
                 {
-                    var orderItem = applicationDB.OrderItems.FirstOrDefault(x => x.OrderItemId == item.Id);
+                    var orderItem = applicationDB.OrderItems.FirstOrDefault(x => x.OrderItemId == item.OrderItemId);
                     if (orderItem != null)
                     {
-                        orderItem.VAT = item.VAT;
-                        orderItem.Quantity = item.Quantity;
-                        orderItem.Rate = item.Rate;
-                        orderItem.ServiceItemCode = item.Servis;
-                        orderItem.ServiceItemName = item.Servis;
+                        Mapper.Map<NewOrderItem, OrderItem>(item, orderItem);
                         applicationDB.Entry(orderItem).State = EntityState.Modified;
                     }
                 }
                 if (item.Status == 2) //Delete
                 {
-                    var orderItem = applicationDB.OrderItems.FirstOrDefault(x => x.OrderItemId == item.Id);
+                    var orderItem = applicationDB.OrderItems.FirstOrDefault(x => x.OrderItemId == item.OrderItemId);
                     if (orderItem != null)
                     {
                         applicationDB.Entry(orderItem).State = EntityState.Deleted;
@@ -119,13 +100,14 @@ namespace FSC.Controllers.api
                 }
                 //if (item.Status == 3)  //Orginal
             }
+
             applicationDB.Entry(order).State = EntityState.Modified;
             applicationDB.SaveChanges();
+
 
             var newOrder = applicationDB.Orders.FirstOrDefault(x => x.OrderId == value.Id);
 
             var newOrderVM = Mapper.Map<NewOrderVM>(newOrder);
-            newOrderVM.Id = order.OrderId;
             return Ok(newOrderVM);
         }
 
@@ -139,7 +121,6 @@ namespace FSC.Controllers.api
                 return NotFound();
 
             var newOrderVM = Mapper.Map<NewOrderVM>(order);
-            newOrderVM.Id = order.OrderId;
             return Ok(newOrderVM);
         }
 
