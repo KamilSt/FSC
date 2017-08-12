@@ -23,6 +23,5 @@ namespace FSC.ViewModels.Api
         public decimal VAT { get; set; }
         public virtual decimal Brutto { get; set; }
         public string Servis { get; set; }
-        public string ServiceItemName { get; set; }
     }
 }

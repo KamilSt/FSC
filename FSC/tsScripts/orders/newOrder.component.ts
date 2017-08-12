@@ -34,7 +34,7 @@ export class NewOrderComponent {
     showOrder(order: Order) {
         this.newOder = new newOrder(order.Id, order.CustomerId, order.Description, new Array<newOrderItem>());
         order.OrderItems.forEach((item, i) => {
-            this.newOder.Items.push(new newOrderItem(item.OrderItemId, item.ServiceItemName, item.Quantity, item.Rate, item.VAT, Status.Orginal));
+            this.newOder.Items.push(new newOrderItem(item.OrderItemId, item.Servis, item.Quantity, item.Rate, item.VAT, Status.Orginal));
         })
     }
 

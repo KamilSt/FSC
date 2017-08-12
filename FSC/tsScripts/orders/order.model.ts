@@ -26,7 +26,7 @@ export class newOrder {
 export class newOrderItem {
 
     constructor(
-        public Id: number,
+        public OrderItemId: number,
         public Servis: string,
         public Quantity: number,
         public Rate: number,
@@ -64,6 +64,7 @@ export class OrderItem {
     public OrderItemId: number;
     public ServiceItemCode: string;
     public ServiceItemName: string;
+    public Servis: string;
     public Quantity: number;
     public Rate: number;
     public VAT: number;
