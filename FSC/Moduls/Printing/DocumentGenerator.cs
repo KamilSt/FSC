@@ -5,7 +5,7 @@ namespace FSC.Moduls.Printing
 {
     public abstract class DocumentGenerator
     {
-        public virtual void Generate()
+        public virtual void Generate(int orderId)
         {
         }
         public DateTime DateOfInvoice;

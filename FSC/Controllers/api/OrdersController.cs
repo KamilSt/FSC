@@ -155,7 +155,7 @@ namespace FSC.Controllers.api
 
             order.Invoiced = true;
             var invoice = DocumentGeneratorFactory.GetGenerator(DocumentTypeEnum.Invoice);
-            invoice.Generate();
+            invoice.Generate(id);
             invoice.InvoiceDocument.OrderId = id;
             invoice.InvoiceDocument.CustomerId = order.CustomerId;
             applicationDB.InvoiceDocuments.Add(invoice.InvoiceDocument);
