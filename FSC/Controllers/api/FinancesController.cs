@@ -3,9 +3,11 @@ using FSC.Moduls.SalaryCalculators;
 using FSC.ViewModels.Api;
 using Microsoft.AspNet.Identity;
 using System.Web.Http;
+using System.Linq;
 
 namespace FSC.Controllers.api
 {
+
     public class FinancesController : ApiController
     {
         private ApplicationDbContext applicationDB = null;
@@ -32,6 +34,35 @@ namespace FSC.Controllers.api
             var calculator = new SalaryCalculator(contract);
             var result = calculator.Calculator();
 
+            return Ok(result);
+        }
+
+        [Route("api/finances/financialDocuments/")]
+        [HttpGet]
+        public IHttpActionResult faktury()
+        {
+            var result = applicationDB.InvoiceDocuments
+               .GroupBy(g => new
+               {
+                   year = (g.DateOfInvoice.Year),
+                   quarter = ((g.DateOfInvoice.Month - 1) / 3)
+               })
+               .Select(u => new InvoiceDocumentVM
+               {
+                   Sum = u.Sum(i => i.Order.OrderItems.Sum(p => p.Quantity * p.Rate)),
+                   Year = u.Key.year,
+                   Quarter = u.Key.quarter,
+                   InvoiceInfo = u.Select(p => new InfoInfoice()
+                   {
+                       Id = p.Id,
+                       CompanyName = p.Order.Customer.CompanyName,
+                       InvoiceDate = p.DateOfInvoice,
+                       InvoiNumber = p.InvoiceNmuber,
+                       Sum = p.Order.OrderItems.Sum(o => o.Quantity * o.Rate)
+                   })
+               })
+               .OrderBy(o => o.Year).ThenBy(k => k.Quarter)
+               .ToList();
             return Ok(result);
         }
     }

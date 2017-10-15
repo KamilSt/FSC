@@ -248,6 +248,7 @@
     <Compile Include="ViewModels\Api\CreateChecklistVM.cs" />
     <Compile Include="ViewModels\Api\CustomersVM.cs" />
     <Compile Include="ViewModels\Api\FormSalaryCalculatorVM.cs" />
+    <Compile Include="ViewModels\Api\InvoiceDocumentVM.cs" />
     <Compile Include="ViewModels\Api\NewOrderVM.cs" />
     <Compile Include="ViewModels\Api\OrderListVM.cs" />
   </ItemGroup>
