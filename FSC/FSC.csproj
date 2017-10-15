@@ -283,6 +283,7 @@
     <Content Include="tsScripts\checklist\checkList.css" />
     <Content Include="tsScripts\checklist\checklist.component.html" />
     <Content Include="tsScripts\customer\customers.component.html" />
+    <Content Include="tsScripts\financialDocuments\financialDocuments.component.html" />
     <Content Include="tsScripts\navbar.component.html" />
     <Content Include="tsScripts\orders\newOrder.component.html" />
     <Content Include="tsScripts\salaryCalculator\salaryCalculator.component.html" />
@@ -344,6 +345,8 @@
     <TypeScriptCompile Include="tsScripts\customer\customers.component.ts" />
     <TypeScriptCompile Include="tsScripts\customer\customerEdit.component.ts" />
     <TypeScriptCompile Include="tsScripts\customer\customerSelector.component.ts" />
+    <TypeScriptCompile Include="tsScripts\financialDocuments\financialDocuments.component.ts" />
+    <TypeScriptCompile Include="tsScripts\financialDocuments\financialDocuments.service.ts" />
     <TypeScriptCompile Include="tsScripts\navbar.component.ts" />
     <TypeScriptCompile Include="tsScripts\orders\newOrder.component.ts" />
     <TypeScriptCompile Include="tsScripts\orders\orders.service.ts" />

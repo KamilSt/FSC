@@ -16,6 +16,7 @@ import { NewOrderComponent } from "./orders/newOrder.component";
 import { CustomersComponent } from "./customer/customers.component";
 import { CustomerEditComponent } from "./customer/customerEdit.component";
 import { CustomerSelector } from "./customer/customerSelector.component";
+import { FinancialDocumentComponent } from "./financialDocuments/financialDocuments.component";
 
 const appRoutes: Routes = [
     { path: '', component: HomepageComponent },
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
     { path: 'salaryCalc', component: SalaryCalculatorComponent },
     { path: 'checkLists', component: ChecklistsComponent },
     { path: 'customers', component: CustomersComponent },
+    { path: 'financialDocuments', component: FinancialDocumentComponent },
     { path: '**', component: HomepageComponent }
 ];
 
@@ -40,6 +42,7 @@ const appRoutes: Routes = [
         NewOrderComponent,
         CustomersComponent,
         CustomerEditComponent,
+        FinancialDocumentComponent,
         CustomerSelector,
         PlCurrencyPipe],
     bootstrap: [AppComponent, NavbarComponent]

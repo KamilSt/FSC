@@ -1,0 +1,26 @@
+﻿
+<section>
+    <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true" *ngIf="documents!=null">
+        <div class="panel panel-default" *ngFor="let group of documents ">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a role="button" class="collapsed"  data-toggle="collapse" data-parent="#accordion2" href="#{{group.Year}}{{group.Quarter}}" aria-expanded="true" >
+                        <span>{{group.Year}} kwartał {{group.Quarter}} => {{group.Sum | plCurrency}}</span>
+                    </a>
+                </h4>
+            </div>
+            <div id="{{group.Year}}{{group.Quarter}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <div *ngFor="let ii of group.InvoiceInfo ">
+                        <div class="row">
+                            <div class="col-lg-2">{{ii.InvoiNumber }}</div>
+                            <div class="col-lg-2">{{ii.CompanyName }}</div>
+                            <div class="col-lg-2">{{ii.InvoiceDate  | date:'d.MM.y'}}</div>
+                            <div class="col-lg-2 text-right">{{ii.Sum | plCurrency}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
