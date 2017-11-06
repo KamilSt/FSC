@@ -24,5 +24,6 @@ namespace FSC.ViewModels.Api
         public decimal Total { get; set; }
         public bool Invoiced { get; set; }
         public string InvoiceNumber { get; set; }
+        public int InvoiceId { get; set; }
     }
 }

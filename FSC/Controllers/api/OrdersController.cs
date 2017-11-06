@@ -34,7 +34,8 @@ namespace FSC.Controllers.api
                 Date = order.OrderDateTime,
                 Total = order.Total,
                 Invoiced = order.Invoiced,
-                InvoiceNumber = order.InvoiceDocuments.FirstOrDefault().InvoiceNmuber
+                InvoiceNumber = order.InvoiceDocuments.FirstOrDefault().InvoiceNmuber,
+                InvoiceId = order.InvoiceDocuments.FirstOrDefault() !=null ? order.InvoiceDocuments.FirstOrDefault().Id : 0
             });//Filters
             vm.Orders.AddRange(listItem);
             vm.Count = vm.Orders.Count();

@@ -24,7 +24,7 @@
                         <button type="button" class="btn btn-default " (click)="makeInvoice(order)">Utwórz fakturę</button>
                     </ng-container>
                     <ng-container *ngIf="order.Invoiced">
-                        <button type="button" class="btn btn-default ">{{order?.InvoiceNumber}} </button>
+                        <button type="button" class="btn btn-default " (click) ="downloadFile(order.InvoiceId)">{{order?.InvoiceNumber}} </button>
                     </ng-container>
                 </td>
                 <td class="text-right">
