@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, Headers, RequestOptions, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
 
@@ -16,6 +16,11 @@ export class FinancialDocumentsService {
     getDocuments() {
         return this._http.get(this.address, this.requestOptions())
             .map((response: Response) => <invoiceDocument[]>response.json())
+            .catch(this.hendleError);
+    }
+    downloadPDF(idDoc) {
+        return this._http.get("api/finances/invoice/" + idDoc, { responseType: ResponseContentType.Blob })
+            .map((response: Response) => response)
             .catch(this.hendleError);
     }       
 

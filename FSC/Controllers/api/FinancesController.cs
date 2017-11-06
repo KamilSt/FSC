@@ -4,6 +4,9 @@ using FSC.ViewModels.Api;
 using Microsoft.AspNet.Identity;
 using System.Web.Http;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace FSC.Controllers.api
 {
@@ -64,6 +67,31 @@ namespace FSC.Controllers.api
                .OrderBy(o => o.Year).ThenBy(k => k.Quarter)
                .ToList();
             return Ok(result);
+        }
+
+        [Route("api/finances/invoice/{id}")]
+        [HttpGet]
+        public HttpResponseMessage DownloadInvoice(int id)
+        {
+            if (id == 0)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            var invoice = applicationDB.InvoiceDocuments.FirstOrDefault(x => x.Id == id);
+            if (invoice == null)
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+
+            var result = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ByteArrayContent(invoice.File)
+            };
+            result.Content.Headers.ContentDisposition =
+                new ContentDispositionHeaderValue("attachment")
+                {
+                    FileName = invoice.FileName
+                };
+            result.Content.Headers.ContentType =
+                new MediaTypeHeaderValue("application/octet-stream");
+
+            return result;
         }
     }
 }
