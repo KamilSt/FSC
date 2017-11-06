@@ -49,7 +49,7 @@ namespace FSC.Controllers.api
                })
                .Select(u => new InvoiceDocumentVM
                {
-                   Sum = u.Sum(i => i.Order.OrderItems.Sum(p => p.Quantity * p.Rate)),
+                   Sum = u.Sum(i => i.Order.Total),
                    Year = u.Key.year,
                    Quarter = u.Key.quarter,
                    InvoiceInfo = u.Select(p => new InfoInfoice()
@@ -58,7 +58,7 @@ namespace FSC.Controllers.api
                        CompanyName = p.Order.Customer.CompanyName,
                        InvoiceDate = p.DateOfInvoice,
                        InvoiNumber = p.InvoiceNmuber,
-                       Sum = p.Order.OrderItems.Sum(o => o.Quantity * o.Rate)
+                       Sum = p.Order.Total
                    })
                })
                .OrderBy(o => o.Year).ThenBy(k => k.Quarter)

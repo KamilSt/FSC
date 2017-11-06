@@ -14,7 +14,7 @@ namespace FSC.App_Start
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMissingTypeMaps = true;
+                cfg.CreateMissingTypeMaps = false;
                 cfg.AddProfile<WebApiProfile>();
             });
         }
@@ -29,8 +29,10 @@ namespace FSC.App_Start
 
             CreateMap<Checklist, CheckListItem>().ReverseMap();
             CreateMap<Customer, CustomersVM>();
+
             CreateMap<OrderItem, NewOrderItem>()
-                .ForMember(x => x.Servis, opt => opt.MapFrom(no => no.ServiceItemName));
+                .ForMember(x => x.Servis, opt => opt.MapFrom(no => no.ServiceItemName))
+                .ForMember(x => x.Brutto, opt => opt.MapFrom(no => no.Gross));
             CreateMap<NewOrderItem, OrderItem>()
                 .ForMember(x => x.OrderId, opt => opt.Ignore())
                 .ForMember(x => x.OrderItemId, opt => opt.MapFrom(no => no.OrderItemId))
