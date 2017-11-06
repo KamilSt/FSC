@@ -13,7 +13,7 @@
                 <div class="panel-body">
                     <div *ngFor="let ii of group.InvoiceInfo ">
                         <div class="row">
-                            <div class="col-lg-3" (click)="download(ii.Id)">{{ii.InvoiNumber }}</div>
+                            <div class="col-lg-3" (click)="downloadFile(ii.Id)">{{ii.InvoiNumber }}</div>
                             <div class="col-lg-2">{{ii.CompanyName }}</div>
                             <div class="col-lg-2">{{ii.InvoiceDate  | date:'d.MM.y'}}</div>
                             <div class="col-lg-2 text-right">{{ii.Sum | plCurrency}}</div>

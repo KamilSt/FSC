@@ -5,7 +5,7 @@ import { invoiceDocument, FinancialDocumentsService } from "../financialDocument
 @Component({
     selector: "financialDocuments",
     templateUrl: "./tsScripts/financialDocuments/financialDocuments.component.html",
-    providers: [FinancialDocumentsService, OrdersService]
+    providers: [FinancialDocumentsService]
 })
 export class FinancialDocumentComponent {
 
