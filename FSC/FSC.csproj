@@ -218,6 +218,10 @@
     <Compile Include="Migrations\201707151005259_invoice db models.Designer.cs">
       <DependentUpon>201707151005259_invoice db models.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710151632509_SQLFUNCTION.cs" />
+    <Compile Include="Migrations\201710151632509_SQLFUNCTION.Designer.cs">
+      <DependentUpon>201710151632509_SQLFUNCTION.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -373,6 +377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707151005259_invoice db models.resx">
       <DependentUpon>201707151005259_invoice db models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710151632509_SQLFUNCTION.resx">
+      <DependentUpon>201710151632509_SQLFUNCTION.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

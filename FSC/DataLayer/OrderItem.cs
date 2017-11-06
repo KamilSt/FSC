@@ -25,6 +25,7 @@ namespace FSC.DataLayer
         public decimal Rate { get; set; }
         [Display(Name = "VAT")]
         public decimal VAT { get; set; }
-
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public decimal Gross { get; private set; }
     }
 }
