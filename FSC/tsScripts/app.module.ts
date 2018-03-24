@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PlCurrencyPipe } from "./pipes/PlCurrency.pipe";
+import { PaginatePipe } from "./pipes/paginate/paginate.pipe";
+import { PaginateComponent } from "./pipes/paginate/paginate.component";
 
 import { NavbarComponent } from './navbar.component';
 import { ChecklistsComponent } from './checklist/checklist.component';

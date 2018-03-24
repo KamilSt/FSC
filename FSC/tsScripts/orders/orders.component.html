@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let order of (orderListVM)?.Orders">
+            <tr *ngFor="let order of (orderListVM)?.Orders | paginate: { pageSize:6, currentPage: p }">
                 <td></td>
                 <td>{{order.CompanyName}}</td>
                 <td>{{order.Date | date:'d.MM.y'}}</td>
@@ -34,6 +34,7 @@
             </tr>
         </tbody>
     </table>
+    <paginate-component totalItems="{{(orderListVM)?.Orders.length}}" (pageChanged)="p = $event" [pageSize]=6> </paginate-component>
 </section>
 
 <p>Jest: {{orderListVM?.Count}}</p>

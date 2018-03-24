@@ -290,6 +290,7 @@
     <Content Include="tsScripts\financialDocuments\financialDocuments.component.html" />
     <Content Include="tsScripts\navbar.component.html" />
     <Content Include="tsScripts\orders\newOrder.component.html" />
+    <Content Include="tsScripts\pipes\paginate\paginate.component.html" />
     <Content Include="tsScripts\salaryCalculator\salaryCalculator.component.html" />
     <Content Include="tsScripts\salaryCalculator\salaryCalculator.css" />
     <Content Include="Web.config" />
@@ -360,6 +361,8 @@
     <TypeScriptCompile Include="tsScripts\checklist\checklist.component.ts" />
     <TypeScriptCompile Include="tsScripts\checklist\checklists.service.ts" />
     <TypeScriptCompile Include="tsScripts\main.ts" />
+    <TypeScriptCompile Include="tsScripts\pipes\paginate\paginate.component.ts" />
+    <TypeScriptCompile Include="tsScripts\pipes\paginate\paginate.pipe.ts" />
     <TypeScriptCompile Include="tsScripts\pipes\PlCurrency.pipe.ts" />
     <TypeScriptCompile Include="tsScripts\salaryCalculator\salaryCalculator.model.ts" />
     <TypeScriptCompile Include="tsScripts\salaryCalculator\salaryCalculator.component.ts" />
