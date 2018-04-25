@@ -191,6 +191,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\CheckListController.cs" />
     <Compile Include="Controllers\api\CustomersController.cs" />
+    <Compile Include="Controllers\api\FilterController.cs" />
     <Compile Include="Controllers\api\FinancesController.cs" />
     <Compile Include="Controllers\api\OrdersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -231,6 +232,13 @@
     <Compile Include="Moduls\ExchangeRates\NBPClient.cs" />
     <Compile Include="Moduls\ExchangeRates\NBPData.cs" />
     <Compile Include="Moduls\ExchangeRates\NBPService.cs" />
+    <Compile Include="Moduls\FormFilters\DropdownFilter.cs" />
+    <Compile Include="Moduls\FormFilters\FilterFactory.cs" />
+    <Compile Include="Moduls\FormFilters\FilterRequest.cs" />
+    <Compile Include="Moduls\FormFilters\FilterResponse.cs" />
+    <Compile Include="Moduls\FormFilters\FiltersBase.cs" />
+    <Compile Include="Moduls\FormFilters\FilterTemplates\OrderListFilter.cs" />
+    <Compile Include="Moduls\FormFilters\TextBoxFilter.cs" />
     <Compile Include="Moduls\Printing\DocumentGenerator.cs" />
     <Compile Include="Moduls\Printing\DocumentGeneratorFactory.cs" />
     <Compile Include="Moduls\Printing\DocumentTypeEnum.cs" />
