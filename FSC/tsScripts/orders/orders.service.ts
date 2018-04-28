@@ -7,8 +7,9 @@ import { Order } from "../orders/order.model";
 export class OrdersService {
     constructor(private _http: Http) { }
 
-    getOrders() {
-        return this._http.get(this.address + 'Get', this.requestOptions())
+    getOrders(filter="") {
+        let body = JSON.stringify(filter);
+        return this._http.post(this.address + 'Get/', body, this.requestOptions())
             .map((response: Response) => response.json())
             .catch(this.hendleError);
     }

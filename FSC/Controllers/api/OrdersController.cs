@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FSC.DataLayer;
+using FSC.Moduls.FormFilters;
 using FSC.Moduls.Printing;
 using FSC.ViewModels.Api;
 using Microsoft.AspNet.Identity;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 
 namespace FSC.Controllers.api
 {
@@ -22,12 +24,16 @@ namespace FSC.Controllers.api
             userId = User.Identity.GetUserId();
         }
 
-        [HttpGet]
-        //[Route("api/Orders/Get")]
-        public OrderListVM Get()
+        [HttpPost]
+        [Route("api/Orders/Get")]
+        public OrderListVM Get([FromBody]string filters)
         {
             OrderListVM vm = new OrderListVM();
-            var listItem = applicationDB.Orders.Select(order => new OrderListItemVM
+            IQueryable<Order> orders = applicationDB.Orders;
+            if (!string.IsNullOrEmpty(filters))
+                orders = filterMethod(orders, filters);
+
+            var orderList = orders.Select(order => new OrderListItemVM
             {
                 Id = order.OrderId,
                 CompanyName = order.Customer.CompanyName,
@@ -36,10 +42,44 @@ namespace FSC.Controllers.api
                 Invoiced = order.Invoiced,
                 InvoiceNumber = order.InvoiceDocuments.FirstOrDefault().InvoiceNmuber,
                 InvoiceId = order.InvoiceDocuments.FirstOrDefault() !=null ? order.InvoiceDocuments.FirstOrDefault().Id : 0
-            });//Filters
-            vm.Orders.AddRange(listItem);
+            });
+            vm.Orders.AddRange(orderList);
             vm.Count = vm.Orders.Count();
             return vm;
+        }
+        private IQueryable<Order> filterMethod(IQueryable<Order> orders, string filters)
+        {
+            var ser = new JavaScriptSerializer();
+            var reqFilters = ser.Deserialize<List<FilterRequest>>(filters);
+            foreach (var filter in reqFilters)
+            {
+                switch (filter.key)
+                {
+                    case "NumberInvoice":
+                        if (!string.IsNullOrWhiteSpace(filter.value))
+                            orders = orders.Where(x => x.InvoiceDocuments.Any(y => y.InvoiceNmuber.Contains(filter.value)));
+                        break;
+
+                    case "CompanyName":
+                        if (!string.IsNullOrWhiteSpace(filter.value))
+                            orders = orders.Where(x => x.Customer.CompanyName.Contains(filter.value));
+                        break;
+
+                    case "Invoiced":
+                        if (!string.IsNullOrEmpty(filter.value))
+                        {
+                            if (filter.value.Equals("Invoiced"))
+                                orders = orders.Where(x => x.Invoiced == true);
+                            else if (filter.value.Equals("TakenCorrection"))
+                                orders = orders.Where(x => x.Description.Contains("Corection Invoice"));
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            return orders;
         }
 
         [HttpPost]
