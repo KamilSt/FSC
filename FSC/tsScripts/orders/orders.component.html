@@ -1,6 +1,7 @@
 ﻿
 <a class="btn btn-default " routerLink="/newOrder" routerLinkActive="active">Nowe zamówienie </a>
 <section>
+    <filterComponent filterName="OrderListFilter" (filterQuery)="filter($event)"></filterComponent>
     <table class="table table-striped">
         <thead>
             <tr>

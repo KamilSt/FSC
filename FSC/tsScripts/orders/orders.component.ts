@@ -13,10 +13,18 @@ import { FinancialDocumentsService } from "../financialDocuments/financialDocume
     providers: [OrdersService, FinancialDocumentsService]  
 })
 export class OrdersComponent {
-    public orderListVM ;
+    public orderListVM;
+    public p: number;
   
     constructor(private _orderServise: OrdersService, private _financialServise: FinancialDocumentsService, private router: Router) {
-        this._orderServise.getOrders().subscribe(x =>  this.orderListVM = x );
+        this._orderServise.getOrders().subscribe(x => this.showData(x));
+    }
+    filter($event) {
+        this._orderServise.getOrders($event).subscribe(x => this.showData(x));
+    }
+    showData(list) {
+        this.p = 1;
+        this.orderListVM = list;
     }
    
     editOrder(id: number) {
