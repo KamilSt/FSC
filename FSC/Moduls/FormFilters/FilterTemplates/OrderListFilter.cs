@@ -29,15 +29,16 @@ namespace FSC.Moduls.FormFilters.FilterTemplates
             });
 
             var dropdownMenu = new List<FiltersBase<string>>();
-            dropdownMenu.Add(new TextBoxFilter() { key = "Invoiced", label = "Zafakturowane", order = 1 });
-            dropdownMenu.Add(new TextBoxFilter() { key = "TakenCorrection", label = "Z korektą", order = 2 });
+            dropdownMenu.Add(new TextBoxFilter() { key = "", label = "Wybierz", order = 1 });
+            dropdownMenu.Add(new TextBoxFilter() { key = "Invoice", label = "Faktury", order = 2 });
+            dropdownMenu.Add(new TextBoxFilter() { key = "Correction", label = "Korekty", order = 3 });
             filterResponse.Filters.Add(new DropdownFilter()
             {
-                key = "Invoiced",
-                label = "Zafakturowa: ",
+                key = "DocumentType",
+                label = "Typ dokumentu",
                 order = 25,
                 visible = true,
-                value = dropdownMenu
+                options = dropdownMenu,
             });
 
             return filterResponse;

@@ -1,0 +1,37 @@
+﻿#Filters {
+    display: block;
+    padding: 10px;
+}
+.filterControl {
+    background-color: #928787;
+    display: inline-flex;
+    margin-right: 10px;
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+    height: 36px;
+    margin-bottom: 5px;
+}
+    .filterControl span.close {
+        color: white;
+        font-size: 15px;
+        line-height: 1.6;
+    }
+        .filterControl span.close:hover {
+            color: red;
+        }
+
+label {
+    margin-right: 15px;
+    margin-left: 5px;
+}
+input {
+    width: 100px;
+}
+.filterContainerButton {
+    display: inline-block;
+    padding: 5px;
+}
+#filterContainerOption {
+    padding: 5px;
+}

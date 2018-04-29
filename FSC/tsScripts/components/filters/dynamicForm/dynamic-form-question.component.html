@@ -1,0 +1,13 @@
+<div [formGroup]="form" *ngIf="question.visible" class="form-group">
+    <div [ngSwitch]="question.controlType" class='filterControl'>
+        <label [attr.for]="question.key">{{question.label}}</label>
+
+        <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.type" (input)="questionValueChange(question, $event.target.value)">
+
+        <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key" (change)="questionValueChange(question, $event.target.value)">
+            <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
+        </select>
+        <span class='close text-right' (click)='hideFilter(question)'>X</span><!--<closeFilter></closeFilter>-->
+    </div>
+    <!--<div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>-->
+</div>

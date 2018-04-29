@@ -65,12 +65,12 @@ namespace FSC.Controllers.api
                             orders = orders.Where(x => x.Customer.CompanyName.Contains(filter.value));
                         break;
 
-                    case "Invoiced":
+                    case "DocumentType":
                         if (!string.IsNullOrEmpty(filter.value))
                         {
-                            if (filter.value.Equals("Invoiced"))
+                            if (filter.value.Equals("Invoice"))
                                 orders = orders.Where(x => x.Invoiced == true);
-                            else if (filter.value.Equals("TakenCorrection"))
+                            else if (filter.value.Equals("Correction"))
                                 orders = orders.Where(x => x.Description.Contains("Corection Invoice"));
                         }
                         break;

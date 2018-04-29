@@ -1,0 +1,4 @@
+﻿
+<div *ngIf="isDataAvailable"  id="Filters">
+    <app-dynamic-form [questions]="questions" (serchQuery)="serchQuery($event)"></app-dynamic-form>
+</div>

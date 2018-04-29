@@ -1,13 +1,12 @@
 ﻿import { NgModule, } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule,  } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PlCurrencyPipe } from "./pipes/PlCurrency.pipe";
 import { PaginatePipe } from "./pipes/paginate/paginate.pipe";
-import { PaginateComponent } from "./pipes/paginate/paginate.component";
 
 import { NavbarComponent } from './navbar.component';
 import { ChecklistsComponent } from './checklist/checklist.component';
@@ -15,9 +14,13 @@ import { HomepageComponent } from "./homepage.component";
 import { SalaryCalculatorComponent } from "./salaryCalculator/salaryCalculator.component";
 import { OrdersComponent } from "./orders/orders.component";
 import { NewOrderComponent } from "./orders/newOrder.component";
+import { FilterComponent } from "./components/filters/filter.component";
+import { DynamicFormComponent } from './components/filters/dynamicForm/dynamic-form.component';
+import { DynamicFormQuestionComponent } from './components/filters/dynamicForm/dynamic-form-question.component';
 import { CustomersComponent } from "./customer/customers.component";
 import { CustomerEditComponent } from "./customer/customerEdit.component";
 import { CustomerSelector } from "./customer/customerSelector.component";
+import { PaginateComponent } from "./pipes/paginate/paginate.component";
 import { FinancialDocumentComponent } from "./financialDocuments/financialDocuments.component";
 
 const appRoutes: Routes = [
@@ -34,7 +37,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-    imports: [BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes)],
+    imports: [BrowserModule, FormsModule, HttpModule, ReactiveFormsModule, RouterModule.forRoot(appRoutes)],
     declarations: [AppComponent,
         ChecklistsComponent,
         NavbarComponent,
@@ -42,11 +45,12 @@ const appRoutes: Routes = [
         SalaryCalculatorComponent,
         OrdersComponent,
         NewOrderComponent,
-        CustomersComponent,
+        FilterComponent, DynamicFormComponent, DynamicFormQuestionComponent,
+        CustomersComponent, PaginateComponent,
         CustomerEditComponent,
         FinancialDocumentComponent,
         CustomerSelector,
-        PlCurrencyPipe],
+        PlCurrencyPipe, PaginatePipe],
     bootstrap: [AppComponent, NavbarComponent]
 })
 export class AppModule { }

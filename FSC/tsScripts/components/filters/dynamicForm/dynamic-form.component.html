@@ -1,0 +1,21 @@
+<div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="form" class="form-inline">
+        <div *ngFor="let question of questions; let index = index;" class="form-group">
+            <app-question [(question)]="questions[index]" [form]="form" (hideElement)="refreshElement()"></app-question>
+        </div>
+
+        <div class="pull-right">
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Filtruj</button>
+            <div class="filterContainerButton dropdown" id="filterContainer">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Dodaj filter
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="filterContainerOption">
+                    <li class="dropdown-item" *ngFor="let filter of hiddenFilters" (click)="showFilter(filter)">{{filter.label}}</li>
+                </ul>
+            </div>
+            <button id="SaveFilters" type="button" class="btn ">Zapisz filtry</button>
+        </div>
+    </form>
+</div>

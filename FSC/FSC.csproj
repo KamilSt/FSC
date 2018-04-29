@@ -295,6 +295,9 @@
     <Content Include="tsScripts\checklist\checkList.css" />
     <Content Include="tsScripts\checklist\checklist.component.html" />
     <Content Include="tsScripts\customer\customers.component.html" />
+    <Content Include="tsScripts\components\filters\dynamicForm\dynamic-form-question.component.html" />
+    <Content Include="tsScripts\components\filters\dynamicForm\dynamic-form.component.html" />
+    <Content Include="tsScripts\components\filters\filter.component.css" />
     <Content Include="tsScripts\financialDocuments\financialDocuments.component.html" />
     <Content Include="tsScripts\navbar.component.html" />
     <Content Include="tsScripts\orders\newOrder.component.html" />
@@ -358,6 +361,15 @@
     <TypeScriptCompile Include="tsScripts\customer\customers.component.ts" />
     <TypeScriptCompile Include="tsScripts\customer\customerEdit.component.ts" />
     <TypeScriptCompile Include="tsScripts\customer\customerSelector.component.ts" />
+    <TypeScriptCompile Include="tsScripts\components\filters\dynamicForm\dynamic-form-question.component.ts" />
+    <TypeScriptCompile Include="tsScripts\components\filters\dynamicForm\dynamic-form.component.ts" />
+    <TypeScriptCompile Include="tsScripts\components\filters\dynamicForm\question-base.ts" />
+    <TypeScriptCompile Include="tsScripts\components\filters\dynamicForm\question-control.service.ts" />
+    <TypeScriptCompile Include="tsScripts\components\filters\dynamicForm\question-dropdown.ts" />
+    <TypeScriptCompile Include="tsScripts\components\filters\dynamicForm\question-textbox.ts" />
+    <TypeScriptCompile Include="tsScripts\components\filters\filter.component.ts" />
+    <TypeScriptCompile Include="tsScripts\components\filters\filters.service.ts" />
+    <Content Include="tsScripts\components\filters\filter.component.html" />
     <TypeScriptCompile Include="tsScripts\financialDocuments\financialDocuments.component.ts" />
     <TypeScriptCompile Include="tsScripts\financialDocuments\financialDocuments.service.ts" />
     <TypeScriptCompile Include="tsScripts\navbar.component.ts" />
