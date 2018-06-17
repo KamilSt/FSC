@@ -13,6 +13,12 @@ export class FiltersService {
             .map((response: Response) => response.json())
             .catch(this.hendleError);
     }
+    setFiltersStatus(filterName, $e) {
+        let body = JSON.stringify($e);
+        return this._http.patch("api/Filter/SaveFilter/" + filterName, body, this.requestOptions())
+            .map((response: Response) => response.json())
+            .catch(this.hendleError);
+    }
     requestOptions(): RequestOptions {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         return new RequestOptions({ headers: headers });

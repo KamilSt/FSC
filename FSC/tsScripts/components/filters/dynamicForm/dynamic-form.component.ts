@@ -14,6 +14,7 @@ export class DynamicFormComponent implements OnInit {
 
     @Input() questions: QuestionBase<any>[] = [];
     @Output() serchQuery = new EventEmitter<any>();
+    @Output() saveFilterEmitter = new EventEmitter<any>();
     form: FormGroup;
     hiddenFilters = [];
 
@@ -21,10 +22,14 @@ export class DynamicFormComponent implements OnInit {
 
     ngOnInit() {
         this.form = this.qcs.toFormGroup(this.questions);
+        this.refreshElement();
     }
     onSubmit() {
         var formValue = this.questions.filter(x => x.visible === true);
         this.serchQuery.emit(JSON.stringify(formValue));
+    }
+    saveStatusFilters() {
+        this.saveFilterEmitter.emit(JSON.stringify(this.questions));
     }
     refreshElement() {
         this.hiddenFilters = this.questions.filter(x => x.visible === false);

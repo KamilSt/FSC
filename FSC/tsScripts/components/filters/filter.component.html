@@ -1,4 +1,4 @@
 ﻿
 <div *ngIf="isDataAvailable"  id="Filters">
-    <app-dynamic-form [questions]="questions" (serchQuery)="serchQuery($event)"></app-dynamic-form>
+    <app-dynamic-form [questions]="questions" (serchQuery)="serchQuery($event)" (saveFilterEmitter)="saveStatusFilter($event)"></app-dynamic-form>
 </div>

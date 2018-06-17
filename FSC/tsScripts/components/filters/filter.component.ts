@@ -13,7 +13,7 @@ import { TextboxQuestion } from "./dynamicForm/question-textbox";
     providers: [FiltersService]
 })
 export class FilterComponent {
-    questions: any[]; 
+    questions: any[];
     isDataAvailable: boolean = false;
     @Output() filterQuery = new EventEmitter<any>();
     @Input() filterName: string;
@@ -27,6 +27,11 @@ export class FilterComponent {
 
     serchQuery($event) {
         this.filterQuery.emit($event);
+    }
+    saveStatusFilter($event) {
+        this._filtersService.setFiltersStatus(this.filterName, $event).subscribe(docs => {
+           // show status
+        });
     }
     displayFilters(filtry) {
         this.questions = [];

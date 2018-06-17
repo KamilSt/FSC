@@ -15,7 +15,7 @@
                     <li class="dropdown-item" *ngFor="let filter of hiddenFilters" (click)="showFilter(filter)">{{filter.label}}</li>
                 </ul>
             </div>
-            <button id="SaveFilters" type="button" class="btn ">Zapisz filtry</button>
+            <button id="SaveFilters" type="button" class="btn" (click)="saveStatusFilters()">Zapisz filtry</button>
         </div>
     </form>
 </div>
