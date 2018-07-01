@@ -199,6 +199,7 @@
     <Compile Include="DataLayer\ApplicationDbContext.cs" />
     <Compile Include="DataLayer\Checklist.cs" />
     <Compile Include="DataLayer\Customer.cs" />
+    <Compile Include="DataLayer\FiltersStatus.cs" />
     <Compile Include="DataLayer\InvoiceCounter.cs" />
     <Compile Include="DataLayer\InvoiceDocument.cs" />
     <Compile Include="DataLayer\InvoiceTemplate.cs" />
@@ -222,6 +223,10 @@
     <Compile Include="Migrations\201710151632509_SQLFUNCTION.cs" />
     <Compile Include="Migrations\201710151632509_SQLFUNCTION.Designer.cs">
       <DependentUpon>201710151632509_SQLFUNCTION.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807012151028_Add StatusFilters.cs" />
+    <Compile Include="Migrations\201807012151028_Add StatusFilters.Designer.cs">
+      <DependentUpon>201807012151028_Add StatusFilters.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -403,6 +408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710151632509_SQLFUNCTION.resx">
       <DependentUpon>201710151632509_SQLFUNCTION.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807012151028_Add StatusFilters.resx">
+      <DependentUpon>201807012151028_Add StatusFilters.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

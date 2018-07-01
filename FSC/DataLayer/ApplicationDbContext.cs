@@ -26,6 +26,8 @@ namespace FSC.DataLayer
         public DbSet<InvoiceCounter> InvoiceCounters { get; set; }
         public DbSet<InvoiceDocument> InvoiceDocuments { get; set; }
 
+        public DbSet<FiltersStatus> FiltersStatus { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
