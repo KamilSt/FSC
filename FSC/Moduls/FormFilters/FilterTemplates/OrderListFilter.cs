@@ -29,9 +29,9 @@ namespace FSC.Moduls.FormFilters.FilterTemplates
             });
 
             var dropdownMenu = new List<FiltersBase<string>>();
-            dropdownMenu.Add(new TextBoxFilter() { key = "", label = "Wybierz", order = 1 });
-            dropdownMenu.Add(new TextBoxFilter() { key = "Invoice", label = "Faktury", order = 2 });
-            dropdownMenu.Add(new TextBoxFilter() { key = "Correction", label = "Korekty", order = 3 });
+            dropdownMenu.Add(new TextBoxFilter() { key = "", value = "Wybierz", order = 1 });
+            dropdownMenu.Add(new TextBoxFilter() { key = "Invoice", value = "Faktury", order = 2 });
+            dropdownMenu.Add(new TextBoxFilter() { key = "Correction", value = "Korekty", order = 3 });
             filterResponse.Filters.Add(new DropdownFilter()
             {
                 key = "DocumentType",

@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -28,41 +29,54 @@ namespace FSC.Controllers.api
             if (string.IsNullOrEmpty(filterName))
                 return NotFound();
             var filterFactory = FilterFactory.GetFilter(filterName);
-            if (filterName.Equals("OrderListFilter"))
-            {
-                filterFactory.Filters = new List<IFilter>();
-                var userOrderListFilter = applicationDB.Users.FirstOrDefault(x => x.Id.Equals(userId));
-                dynamic filters = JArray.Parse(userOrderListFilter.PhoneNumber) as JArray;
+            var filtersStatusSaved = applicationDB.FiltersStatus.SingleOrDefault(x => x.UserId.Equals(userId) && x.FilterName.Equals(filterName));
+            if (filtersStatusSaved == null || filterFactory.Version > filtersStatusSaved.Version)
+                return Ok(filterFactory);
 
-                for (int i = 0; i < filters.Count; i++)
+            filterFactory.Filters = new List<IFilter>();
+            dynamic filters = JArray.Parse(filtersStatusSaved.Filters) as JArray;
+
+            for (int i = 0; i < filters.Count; i++)
+            {
+                switch ((string)filters[i].controlType)
                 {
-                    switch ((string)filters[i].controlType)
-                    {
-                        case "textbox":
-                            TextBoxFilter filterTextBox = filters[i].ToObject<TextBoxFilter>();
-                            filterFactory.Filters.Add(filterTextBox);
-                            break;
-                        case "dropdown":
-                            DropdownFilter filterDropdown = filters[i].ToObject<DropdownFilter>();
-                            filterFactory.Filters.Add(filterDropdown);
-                            break;
-                        default:
-                            break;
-                    }
+                    case "textbox":
+                        TextBoxFilter filterTextBox = filters[i].ToObject<TextBoxFilter>();
+                        filterFactory.Filters.Add(filterTextBox);
+                        break;
+                    case "dropdown":
+                        DropdownFilter filterDropdown = filters[i].ToObject<DropdownFilter>();
+                        filterFactory.Filters.Add(filterDropdown);
+                        break;
+                    default:
+                        break;
                 }
             }
+
             return Ok(filterFactory);
         }
 
         [HttpPatch]
-        [Route("api/Filter/SaveFilter/{filterName}")]
-        public IHttpActionResult SaveFilter(string filterName, [FromBody]string body)
+        [Route("api/Filter/SaveFilter/{filterName}/{version}")]
+        public IHttpActionResult SaveFilter(string filterName, int version, [FromBody]string filters)
         {
             if (string.IsNullOrEmpty(filterName))
                 return NotFound();
-            var userFilter = applicationDB.Users.FirstOrDefault(x => x.Id.Equals(userId));
-            userFilter.PhoneNumber = body;
-            applicationDB.SaveChanges();
+            var statusFilters = applicationDB.FiltersStatus.SingleOrDefault(x => x.UserId.Equals(userId) && x.FilterName.Equals(filterName));
+            if (statusFilters == null)
+            {
+                statusFilters = new FiltersStatus();
+                statusFilters.UserId = userId;
+                statusFilters.FilterName = filterName;
+            }
+            statusFilters.Filters = filters;
+            statusFilters.Version = version;
+            if (statusFilters.Id == 0)
+                applicationDB.FiltersStatus.Add(statusFilters);
+            else
+                applicationDB.Entry(statusFilters).State = EntityState.Modified;
+            applicationDB.SaveChangesAsync();
+
             return Ok();
         }
     }

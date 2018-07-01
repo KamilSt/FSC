@@ -13,9 +13,9 @@ export class FiltersService {
             .map((response: Response) => response.json())
             .catch(this.hendleError);
     }
-    setFiltersStatus(filterName, $e) {
-        let body = JSON.stringify($e);
-        return this._http.patch("api/Filter/SaveFilter/" + filterName, body, this.requestOptions())
+    setFiltersStatus(filterName, $e, version) {
+        let filters = JSON.stringify($e);
+        return this._http.patch("api/Filter/SaveFilter/" + filterName + "/" + version, filters, this.requestOptions())
             .map((response: Response) => response.json())
             .catch(this.hendleError);
     }

@@ -17,6 +17,7 @@ export class FilterComponent {
     isDataAvailable: boolean = false;
     @Output() filterQuery = new EventEmitter<any>();
     @Input() filterName: string;
+    version: string;
 
     constructor(private _filtersService: FiltersService) { }
     ngOnInit() {
@@ -29,11 +30,12 @@ export class FilterComponent {
         this.filterQuery.emit($event);
     }
     saveStatusFilter($event) {
-        this._filtersService.setFiltersStatus(this.filterName, $event).subscribe(docs => {
+        this._filtersService.setFiltersStatus(this.filterName, $event, this.version).subscribe(docs => {
            // show status
         });
     }
     displayFilters(filtry) {
+        this.version = filtry.Version;
         this.questions = [];
         filtry.Filters.forEach((x, i) => {
             switch (x.controlType) {
@@ -52,7 +54,7 @@ export class FilterComponent {
                 case 'dropdown':
                     let options: { key: string, value: string }[] = [];
                     x.options.forEach((w) => {
-                        options.push({ key: w.key, value: w.label });
+                        options.push({ key: w.key, value: w.value });
                     });
 
                     this.questions.push(new DropdownQuestion({
