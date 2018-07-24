@@ -197,6 +197,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DataLayer\ApplicationDbContext.cs" />
+    <Compile Include="DataLayer\ApplicationDbContextInitializer.cs" />
     <Compile Include="DataLayer\Checklist.cs" />
     <Compile Include="DataLayer\Customer.cs" />
     <Compile Include="DataLayer\FiltersStatus.cs" />
