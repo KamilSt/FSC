@@ -6,17 +6,18 @@ using System.Web.Http;
 using AutoMapper;
 using FSC.DataLayer;
 using FSC.ViewModels.Api;
+using FSC.DataLayer.Repository.Interface;
 
 namespace FSC.Controllers.api
 {
     [Authorize]
     public class CheckListController : ApiController
     {
-        private ApplicationDbContext applicationDB = null;
+        private IChecklistRepository checklistRepository = null;
         private readonly string userId = null;
-        public CheckListController()
+        public CheckListController(IChecklistRepository _checklistRepository)
         {
-            applicationDB = new ApplicationDbContext();
+            checklistRepository = _checklistRepository;
             userId = User.Identity.GetUserId();
         }
 
@@ -24,12 +25,7 @@ namespace FSC.Controllers.api
         //[Route("api/CheckList/Get")]
         public IEnumerable<Checklist> Get()
         {
-            var data = applicationDB.CheckLists
-                .Where(x => x.ParentId == 0)
-                .Where(x => x.UserId == userId)
-                .ToList();
-
-            return data;
+            return checklistRepository.GetChecklistForUser(userId).ToList();
         }
 
         [Route("api/CheckList/Get/{id:int:max(10000)}")]
@@ -37,11 +33,11 @@ namespace FSC.Controllers.api
         {
             if (id == 0)
                 return BadRequest();
-            var checkList = applicationDB.CheckLists.Where(x => x.UserId == userId).FirstOrDefault(x => x.Id == id);
+            var checkList = checklistRepository.Get(id);
             if (checkList == null)
                 return NotFound();
             var result = Mapper.Map<CheckListDisplayVM>(checkList);
-            var checkListItems = applicationDB.CheckLists.Where(x => x.ParentId == checkList.Id);
+            var checkListItems = checklistRepository.GetChecklistChild(checkList.Id);
             result.Items = Mapper.Map<List<CheckListItem>>(checkListItems);
 
             return Ok(result);
@@ -58,11 +54,9 @@ namespace FSC.Controllers.api
                 ParentId = checklist.ParentId,
                 UserId = userId,
             };
-            applicationDB.CheckLists.Add(newChecklist);
-            applicationDB.SaveChanges();
-            checklist.Id = newChecklist.Id;
+            checklistRepository.Add(newChecklist);
 
-            return Created(checklist.Id.ToString(), checklist);
+            return Created(newChecklist.Id.ToString(), checklist);
         }
 
         [HttpPut]
@@ -70,15 +64,13 @@ namespace FSC.Controllers.api
         {
             if (id == 0)
                 return BadRequest();
-            var checklist = applicationDB.CheckLists.FirstOrDefault(x => x.Id == id);
+            var checklist = checklistRepository.Get(id);
             if (checklist == null)
                 return NotFound();
             checklist.IsCompleted = value.IsCompleted;
             checklist.Description = value.Description;
+            checklistRepository.Update(checklist);
 
-            applicationDB.Entry(checklist).State = EntityState.Modified;
-            applicationDB.SaveChanges();
-            
             return Ok();
         }
 
@@ -87,17 +79,16 @@ namespace FSC.Controllers.api
         {
             if (id == 0)
                 return BadRequest();
-            var checklist = applicationDB.CheckLists.FirstOrDefault(x => x.Id == id);
+            var checklist = checklistRepository.Get(id);
             if (checklist == null)
                 return NotFound();
 
-            applicationDB.CheckLists.Remove(checklist);
-            var checklistItems = applicationDB.CheckLists.Where(x => x.ParentId == id);
-            applicationDB.CheckLists.RemoveRange(checklistItems);
-            applicationDB.SaveChanges();
+            var checklistItems = checklistRepository.GetChecklistChild(id);
+            foreach (var item in checklistItems)
+                checklistRepository.Remove(item);
+            checklistRepository.Remove(checklist);
 
             return Ok();
         }
-
     }
 }

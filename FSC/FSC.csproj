@@ -216,8 +216,12 @@
     <Compile Include="DataLayer\InvoiceTemplate.cs" />
     <Compile Include="DataLayer\Order.cs" />
     <Compile Include="DataLayer\OrderItem.cs" />
+    <Compile Include="DataLayer\Repository\ChecklistRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DataLayer\Repository\DataRepositoryBase.cs" />
     <Compile Include="DataLayer\Repository\IDataRepository.cs" />
+    <Compile Include="DataLayer\Repository\Interface\IChecklistRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

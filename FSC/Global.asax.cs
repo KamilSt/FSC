@@ -13,6 +13,7 @@ using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using System.Reflection;
 using FSC.DataLayer.Repository;
+using FSC.DataLayer.Repository.Interface;
 
 namespace FSC
 {
