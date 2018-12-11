@@ -277,6 +277,10 @@
     <Compile Include="Moduls\SalaryCalculators\UmowaODzielo.cs" />
     <Compile Include="Moduls\SalaryCalculators\UmowaZlecenie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\UserProvider\DefaultPrincipleProvider.cs" />
+    <Compile Include="Providers\UserProvider\Interface\IPrincipleProvider.cs" />
+    <Compile Include="Providers\UserProvider\Interface\IUserProvider.cs" />
+    <Compile Include="Providers\UserProvider\UserProvider.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Api\CheckListDisplayVM.cs" />
     <Compile Include="ViewModels\Api\CreateChecklistVM.cs" />

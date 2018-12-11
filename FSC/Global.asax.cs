@@ -14,6 +14,8 @@ using Autofac.Integration.WebApi;
 using System.Reflection;
 using FSC.DataLayer.Repository;
 using FSC.DataLayer.Repository.Interface;
+using FSC.Providers.UserProvider;
+using FSC.Providers.UserProvider.Interface;
 
 namespace FSC
 {
@@ -44,6 +46,9 @@ namespace FSC
 
             builder.RegisterType<ChecklistRepository>().As<IChecklistRepository>().InstancePerRequest();
             builder.RegisterType<OrderRepository>().As<IOrderRepository>().InstancePerRequest();
+            
+            builder.RegisterType<DefaultPrincipleProvider>().As<IPrincipleProvider>().InstancePerRequest();
+            builder.RegisterType<UserProvider>().As<IUserProvider>().InstancePerRequest();
 
             //// OPTIONAL: Register web abstractions like HttpContextBase.
             builder.RegisterModule<AutofacWebTypesModule>();
