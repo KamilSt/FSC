@@ -3,13 +3,13 @@ using FSC.DataLayer;
 using FSC.Moduls.FormFilters;
 using FSC.Moduls.Printing;
 using FSC.ViewModels.Api;
-using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Script.Serialization;
+using FSC.Providers.UserProvider.Interface;
 
 namespace FSC.Controllers.api
 {
@@ -18,10 +18,10 @@ namespace FSC.Controllers.api
     {
         private ApplicationDbContext applicationDB = null;
         private readonly string userId = null;
-        public OrdersController()
+        public OrdersController(IUserProvider user)
         {
             applicationDB = new ApplicationDbContext();
-            userId = User.Identity.GetUserId();
+            userId = user.GuidId;
         }
 
         [HttpPost]

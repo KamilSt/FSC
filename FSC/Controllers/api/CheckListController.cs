@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Http;
 using AutoMapper;
 using FSC.DataLayer;
 using FSC.ViewModels.Api;
 using FSC.DataLayer.Repository.Interface;
+using FSC.Providers.UserProvider.Interface;
 
 namespace FSC.Controllers.api
 {
@@ -15,10 +15,10 @@ namespace FSC.Controllers.api
     {
         private IChecklistRepository checklistRepository = null;
         private readonly string userId = null;
-        public CheckListController(IChecklistRepository _checklistRepository)
+        public CheckListController(IChecklistRepository _checklistRepository, IUserProvider user)
         {
             checklistRepository = _checklistRepository;
-            userId = User.Identity.GetUserId();
+            userId = user.GuidId;
         }
 
         [HttpGet]
