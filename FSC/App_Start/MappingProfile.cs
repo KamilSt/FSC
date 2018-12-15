@@ -28,7 +28,7 @@ namespace FSC.App_Start
                        opt => opt.MapFrom(src => src.Description)).ReverseMap();
 
             CreateMap<Checklist, CheckListItem>().ReverseMap();
-            CreateMap<Customer, CustomersVM>();
+            CreateMap<Customer, CustomersVM>().ReverseMap();
 
             CreateMap<OrderItem, NewOrderItem>()
                 .ForMember(x => x.Servis, opt => opt.MapFrom(no => no.ServiceItemName))
@@ -52,6 +52,14 @@ namespace FSC.App_Start
                .ForMember(o => o.OrderDateTime, opt => opt.Ignore())
                .ForMember(o => o.UserId, opt => opt.Ignore())
                .ForMember(v => v.OrderItems, opt => opt.Ignore());
+            CreateMap<Order, OrderListItemVM>()
+                .ForMember(o => o.Id, opt => opt.MapFrom(vr => vr.OrderId))
+                .ForMember(o => o.CompanyName, opt => opt.MapFrom(vr => vr.Customer.CompanyName))
+                .ForMember(o => o.Date, opt => opt.MapFrom(vr => vr.OrderDateTime))
+                .ForMember(o => o.Total, opt => opt.MapFrom(vr => vr.Total))
+                .ForMember(o => o.Invoiced, opt => opt.MapFrom(vr => vr.Invoiced))
+                .ForMember(o => o.InvoiceNumber, opt => opt.MapFrom(vr => vr.InvoiceDocuments.FirstOrDefault().InvoiceNmuber))
+                .ForMember(o => o.InvoiceId, opt => opt.MapFrom(vr => vr.InvoiceDocuments.FirstOrDefault().Id));
         }
     }
 }

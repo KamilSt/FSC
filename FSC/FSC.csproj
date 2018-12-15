@@ -222,6 +222,8 @@
     <Compile Include="DataLayer\Repository\DataRepositoryBase.cs" />
     <Compile Include="DataLayer\Repository\IDataRepository.cs" />
     <Compile Include="DataLayer\Repository\Interface\IChecklistRepository.cs" />
+    <Compile Include="DataLayer\Repository\Interface\IOrderRepository.cs" />
+    <Compile Include="DataLayer\Repository\OrderRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

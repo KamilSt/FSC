@@ -10,6 +10,7 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Script.Serialization;
 using FSC.Providers.UserProvider.Interface;
+using FSC.DataLayer.Repository.Interface;
 
 namespace FSC.Controllers.api
 {
@@ -17,10 +18,12 @@ namespace FSC.Controllers.api
     public class OrdersController : ApiController
     {
         private ApplicationDbContext applicationDB = null;
+        private IOrderRepository orderRepository = null;
         private readonly string userId = null;
-        public OrdersController(IUserProvider user)
+        public OrdersController(IOrderRepository orderRepo, IUserProvider user)
         {
             applicationDB = new ApplicationDbContext();
+            orderRepository = orderRepo;
             userId = user.GuidId;
         }
 
@@ -29,57 +32,11 @@ namespace FSC.Controllers.api
         public OrderListVM Get([FromBody]string filters)
         {
             OrderListVM vm = new OrderListVM();
-            IQueryable<Order> orders = applicationDB.Orders;
-            if (!string.IsNullOrEmpty(filters))
-                orders = filterMethod(orders, filters);
-
-            var orderList = orders.Select(order => new OrderListItemVM
-            {
-                Id = order.OrderId,
-                CompanyName = order.Customer.CompanyName,
-                Date = order.OrderDateTime,
-                Total = order.Total,
-                Invoiced = order.Invoiced,
-                InvoiceNumber = order.InvoiceDocuments.FirstOrDefault().InvoiceNmuber,
-                InvoiceId = order.InvoiceDocuments.FirstOrDefault() !=null ? order.InvoiceDocuments.FirstOrDefault().Id : 0
-            });
-            vm.Orders.AddRange(orderList);
+            IEnumerable<Order> orders = orderRepository.Get(filters);
+            var ordersList = Mapper.Map<List<OrderListItemVM>>(orders);
+            vm.Orders.AddRange(ordersList);
             vm.Count = vm.Orders.Count();
             return vm;
-        }
-        private IQueryable<Order> filterMethod(IQueryable<Order> orders, string filters)
-        {
-            var ser = new JavaScriptSerializer();
-            var reqFilters = ser.Deserialize<List<FilterRequest>>(filters);
-            foreach (var filter in reqFilters)
-            {
-                switch (filter.key)
-                {
-                    case "NumberInvoice":
-                        if (!string.IsNullOrWhiteSpace(filter.value))
-                            orders = orders.Where(x => x.InvoiceDocuments.Any(y => y.InvoiceNmuber.Contains(filter.value)));
-                        break;
-
-                    case "CompanyName":
-                        if (!string.IsNullOrWhiteSpace(filter.value))
-                            orders = orders.Where(x => x.Customer.CompanyName.Contains(filter.value));
-                        break;
-
-                    case "DocumentType":
-                        if (!string.IsNullOrEmpty(filter.value))
-                        {
-                            if (filter.value.Equals("Invoice"))
-                                orders = orders.Where(x => x.Invoiced == true);
-                            else if (filter.value.Equals("Correction"))
-                                orders = orders.Where(x => x.Description.Contains("Corection Invoice"));
-                        }
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-            return orders;
         }
 
         [HttpPost]
