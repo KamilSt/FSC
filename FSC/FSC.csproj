@@ -254,6 +254,8 @@
     <Compile Include="Moduls\ExchangeRates\NBPClient.cs" />
     <Compile Include="Moduls\ExchangeRates\NBPData.cs" />
     <Compile Include="Moduls\ExchangeRates\NBPService.cs" />
+    <Compile Include="Moduls\FormFilters\DataFilteringFactory.cs" />
+    <Compile Include="Moduls\FormFilters\DataFiltering\OrderListDataFiltering.cs" />
     <Compile Include="Moduls\FormFilters\DropdownFilter.cs" />
     <Compile Include="Moduls\FormFilters\FilterFactory.cs" />
     <Compile Include="Moduls\FormFilters\FilterRequest.cs" />
