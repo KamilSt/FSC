@@ -41,5 +41,59 @@ namespace FSC.DataLayer.Repository
                 return orders.OrderByDescending(x => x.OrderDateTime).ToList();
             }
         }
+        public void AddOrderItems(int orderId, List<NewOrderItem> orderItems)
+        {
+            using (ApplicationDbContext entityContext = new ApplicationDbContext())
+            {
+                foreach (var item in orderItems)
+                {
+                    var order = new OrderItem() { OrderId = orderId };
+                    entityContext.OrderItems.Add(Mapper.Map<NewOrderItem, OrderItem>(item, order));
+                }
+                entityContext.SaveChanges();
+            }
+        }
+        public void AddInvoiceToOrder(InvoiceDocument invoiceDocument)
+        {
+            using (ApplicationDbContext entityContext = new ApplicationDbContext())
+            {
+                entityContext.InvoiceDocuments.Add(invoiceDocument);
+                entityContext.SaveChanges();
+            }
+        }
+        public void ChangeOrderItems(int id, List<NewOrderItem> orderItems)
+        {
+            using (ApplicationDbContext entityContext = new ApplicationDbContext())
+            {
+                foreach (var item in orderItems)
+                {
+                    if (item.Status == 0) // New,
+                    {
+                        var newItem = Mapper.Map<OrderItem>(item);
+                        newItem.OrderId = id;
+                        entityContext.Entry(newItem).State = EntityState.Added;
+                    }
+                    if (item.Status == 1) //Modyficate,
+                    {
+                        var orderItem = entityContext.OrderItems.FirstOrDefault(x => x.OrderItemId == item.OrderItemId);
+                        if (orderItem != null)
+                        {
+                            Mapper.Map<NewOrderItem, OrderItem>(item, orderItem);
+                            entityContext.Entry(orderItem).State = EntityState.Modified;
+                        }
+                    }
+                    if (item.Status == 2) //Delete
+                    {
+                        var orderItem = entityContext.OrderItems.FirstOrDefault(x => x.OrderItemId == item.OrderItemId);
+                        if (orderItem != null)
+                        {
+                            entityContext.Entry(orderItem).State = EntityState.Deleted;
+                        }
+                    }
+                    //if (item.Status == 3)  //Orginal
+                }
+                entityContext.SaveChanges();
+            }
+        }
     }
 }
