@@ -198,6 +198,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Business\BusinessEngineFactory.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\CheckListController.cs" />
     <Compile Include="Controllers\api\CustomersController.cs" />
@@ -251,6 +252,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Moduls\BusinessEngines\CreateInvoicesEngine.cs" />
+    <Compile Include="Moduls\BusinessEngines\Interface\ICreateIinvoicesEngine.cs" />
     <Compile Include="Moduls\ExchangeRates\INBPClient.cs" />
     <Compile Include="Moduls\ExchangeRates\INBPService.cs" />
     <Compile Include="Moduls\ExchangeRates\NBPClient.cs" />
@@ -288,6 +291,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Api\CheckListDisplayVM.cs" />
     <Compile Include="ViewModels\Api\CreateChecklistVM.cs" />
+    <Compile Include="ViewModels\Api\CreatedInvoiceVM.cs" />
     <Compile Include="ViewModels\Api\CustomersVM.cs" />
     <Compile Include="ViewModels\Api\FormSalaryCalculatorVM.cs" />
     <Compile Include="ViewModels\Api\InvoiceDocumentVM.cs" />

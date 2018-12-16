@@ -16,6 +16,10 @@ using FSC.DataLayer.Repository;
 using FSC.DataLayer.Repository.Interface;
 using FSC.Providers.UserProvider;
 using FSC.Providers.UserProvider.Interface;
+using FSC.Moduls.BusinessEngines;
+using FSC.Moduls.BusinessEngines.Interface;
+using FSC.Business;
+
 
 namespace FSC
 {
@@ -46,6 +50,9 @@ namespace FSC
 
             builder.RegisterType<ChecklistRepository>().As<IChecklistRepository>().InstancePerRequest();
             builder.RegisterType<OrderRepository>().As<IOrderRepository>().InstancePerRequest();
+
+            builder.RegisterType<BusinessEngineFactory>().As<IBusinessEngineFactory>().InstancePerRequest();
+            builder.RegisterType<CreateInvoicesEngine>().As<ICreateInvoicesEngine>().InstancePerRequest();
             
             builder.RegisterType<DefaultPrincipleProvider>().As<IPrincipleProvider>().InstancePerRequest();
             builder.RegisterType<UserProvider>().As<IUserProvider>().InstancePerRequest();

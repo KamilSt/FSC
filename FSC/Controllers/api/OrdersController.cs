@@ -11,6 +11,8 @@ using System.Web.Http;
 using System.Web.Script.Serialization;
 using FSC.Providers.UserProvider.Interface;
 using FSC.DataLayer.Repository.Interface;
+using FSC.Business;
+using FSC.Moduls.BusinessEngines.Interface;
 
 namespace FSC.Controllers.api
 {
@@ -19,9 +21,11 @@ namespace FSC.Controllers.api
     {
         private ApplicationDbContext applicationDB = null;
         private IOrderRepository orderRepository = null;
+        private IBusinessEngineFactory _BusinessEngineFactory = null;
         private readonly string userId = null;
-        public OrdersController(IOrderRepository orderRepo, IUserProvider user)
+        public OrdersController(IOrderRepository orderRepo, IUserProvider user, IBusinessEngineFactory businessEngineFactory)
         {
+            _BusinessEngineFactory = businessEngineFactory;
             applicationDB = new ApplicationDbContext();
             orderRepository = orderRepo;
             userId = user.GuidId;
@@ -94,13 +98,9 @@ namespace FSC.Controllers.api
             if (order == null)
                 return NotFound();
 
-            order.Invoiced = true;
-            var invoice = DocumentGeneratorFactory.GetGenerator(DocumentTypeEnum.Invoice);
-            invoice.Generate(id);
-            invoice.InvoiceDocument.OrderId = id;
-            invoice.InvoiceDocument.CustomerId = order.CustomerId;
-            orderRepository.AddInvoiceToOrder(invoice.InvoiceDocument);
-            return Ok(new { Id = invoice.InvoiceDocument.Id, InvoiceNmuber = invoice.InvoiceDocument.InvoiceNmuber });
+            ICreateInvoicesEngine createIinvoicesEngine = _BusinessEngineFactory.GetBusinessEngine<ICreateInvoicesEngine>();
+            var createdInvoiceVM = createIinvoicesEngine.CreateIinvoice(id);
+            return Ok(createdInvoiceVM);
         }
     }
 }
